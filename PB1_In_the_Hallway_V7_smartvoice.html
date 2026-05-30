@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <title>Medical English · Lesson 2 — You Already Know Medical English · v1</title>
+  <title>Medical English · Lesson 1 — Hospital Hallway · v6</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -20,6 +20,7 @@
     .pop{animation:popIn .38s cubic-bezier(.34,1.56,.64,1) both}
     .su{animation:slideU .35s ease both}
     .wobble{animation:wobble 2.5s ease-in-out infinite}
+    /* Buttons */
     .mbtn{
       width:100%;padding:13px 16px;border:2.5px solid #2A2A2A;border-radius:14px;
       font-family:'Nunito',system-ui,sans-serif;font-size:15px;font-weight:900;
@@ -70,255 +71,284 @@ var TH = [
 var ALPHA = ['A','B','C','D'];
 var ANN_COLS = ['#E84D6A','#1CB897','#7B5EA7','#D48A00','#4A8FE8'];
 
-/* ── AUDIO ENGINE ─────────────────────────────────────────── */
+/* ── AUDIO ENGINE v3 (smart voice selection) ─────────────────
+   Replaces browser-default TTS with best available neural voice.
+   Fallback chain: Google US English → MS Aria/Jenny (Edge) →
+   Samantha/Alex (macOS/iOS) → first available en-* voice.
+   Phase 2: set AUDIO_ENABLED=true once MP3s are on GitHub.
+────────────────────────────────────────────────────────── */
 var _audioRate = 0.85;
 var _ttsSupported = typeof window !== 'undefined' && 'speechSynthesis' in window;
+var _bestVoice   = null;
+var AUDIO_ENABLED = true; // flip to true after uploading MP3s
+var AUDIO_BASE    = 'https://ralph-tdh.github.io/med-eng-pb/audio/';
 
-function speak(text) {
+var _PREF_VOICES = [
+  'Google US English',
+  'Microsoft Aria Online (Natural) - English (United States)',
+  'Microsoft Jenny Online (Natural) - English (United States)',
+  'Microsoft Guy Online (Natural) - English (United States)',
+  'Samantha','Alex','Karen','Victoria','Moira'
+];
+
+function _pickVoice() {
+  var vv = window.speechSynthesis.getVoices();
+  for (var i = 0; i < _PREF_VOICES.length; i++) {
+    var m = vv.find(function(v){ return v.name === _PREF_VOICES[i]; });
+    if (m) { _bestVoice = m; return; }
+  }
+  _bestVoice = vv.find(function(v){ return /^en/i.test(v.lang); }) || null;
+}
+
+if (_ttsSupported) {
+  if ('onvoiceschanged' in window.speechSynthesis)
+    window.speechSynthesis.onvoiceschanged = _pickVoice;
+  _pickVoice();
+}
+
+function _ttsSpeak(text) {
   if (!_ttsSupported) return;
   window.speechSynthesis.cancel();
   setTimeout(function() {
     var u = new SpeechSynthesisUtterance(text);
-    u.lang = 'en-US';
-    u.rate = _audioRate;
+    u.lang  = 'en-US';
+    u.rate  = _audioRate;
+    u.pitch = 1.05;
+    if (_bestVoice) u.voice = _bestVoice;
     window.speechSynthesis.speak(u);
   }, 50);
 }
 
-function toggleSpeed() {
-  _audioRate = _audioRate > 0.75 ? 0.65 : 0.85;
-  var btn = document.getElementById('speed-toggle');
-  if (!btn) return;
-  var isSlow = _audioRate < 0.75;
-  btn.innerHTML = isSlow ? '🐢 Slow' : '🔊 Normal';
-  btn.style.background  = isSlow ? '#E4FAF4' : '#f0f0f0';
-  btn.style.borderColor = isSlow ? '#1CB897' : '#CCC';
-  btn.style.color       = isSlow ? '#0A7A60' : '#777';
-  btn.style.boxShadow   = isSlow ? '2px 2px 0 #0D8A6D' : '2px 2px 0 #CCC';
+// audioKey: optional — e.g. 'pb1/s1-ph1' (no extension)
+// Currently unused until AUDIO_ENABLED = true
+function speak(text, audioKey) {
+  if (AUDIO_ENABLED && audioKey) {
+    var a = new Audio(AUDIO_BASE + audioKey + '.mp3');
+    a.playbackRate = (_audioRate < 0.75) ? 0.75 : 1.0;
+    a.play().catch(function(){ _ttsSpeak(text); });
+    return;
+  }
+  _ttsSpeak(text);
 }
 
 /* ── LESSON CONFIG ────────────────────────────────────────── */
+// ↓ Only line you need to edit before publishing to GitHub Pages
 var LESSON_CONFIG = {
-  id: 2,
+  id: 1,
   next: {
-    url: '#lesson-3',
-    label: 'Lesson 3 — Vital Signs & Numbers 📊',
-    label_vi: 'Bài 3 — Dấu hiệu sinh tồn & Số liệu lâm sàng',
-    free: false
+    url: 'https://ralph-tdh.github.io/med-eng-pb/PB2_You_Already_Know_V1.html',
+    label: 'Lesson 2 — You already know Medical English 🧠',
+    label_vi: 'Bài 2 — Bạn đã biết Medical English rồi',
+    free: true
   }
 };
 
 /* ── DATA ─────────────────────────────────────────────────── */
 var SITS = [
   {
-    id:1, emoji:'🔥', tag:'Situation 1 / 4', en_tag:'Inflammation (-itis)',
-    en:'Decoding "-itis" words', vi:'Giải mã từ kết thúc bằng "-itis"',
-    ctx_en:'A patient shows you their discharge summary. They point to the word "gastritis" and look confused.',
-    ctx_vi:'Bệnh nhân đưa phiếu xuất viện cho bạn xem. Họ chỉ vào chữ "gastritis" và trông bối rối.',
-    pt:'"Gastritis" — what does this actually mean?',
-    pt_vi:'"Gastritis" — cái này thực ra nghĩa là gì vậy?',
+    id:1, emoji:'🗺️', tag:'Situation 1 / 4', en_tag:'Directions',
+    en:'Asking for directions', vi:'Hỏi đường',
+    ctx_en:'A foreign patient is looking for the X-ray room. They spot you and stop to ask.',
+    ctx_vi:'Bệnh nhân nước ngoài đang tìm phòng X-quang. Họ nhìn thấy bạn và dừng lại hỏi.',
+    pt:'Excuse me, where is the X-ray room?', pt_vi:'Xin lỗi, phòng X-quang ở đâu vậy?',
     phrases:[
-      {en:'The suffix "-itis" means inflammation.',vi:'Đuôi "-itis" có nghĩa là viêm.',gl:{'-itis':'viêm','inflammation':'viêm'}},
-      {en:'Gastritis means inflammation of the stomach.',vi:'Gastritis là viêm dạ dày.',gl:{Gastritis:'viêm dạ dày',stomach:'dạ dày'}},
-      {en:"You may have heard of hepatitis — that's inflammation of the liver.",vi:'Bạn có thể đã nghe về hepatitis — đó là viêm gan.',gl:{hepatitis:'viêm gan',liver:'gan'}},
-      {en:'Any word ending in "-itis" describes a type of inflammation.',vi:'Bất kỳ từ nào kết thúc bằng "-itis" đều mô tả một loại viêm.',gl:{}}
+      {en:'The X-ray room is on the second floor.',vi:'Phòng X-quang ở tầng hai.',gl:{'second floor':'tầng hai'}},
+      {en:'Go straight, then turn left.',vi:'Đi thẳng, rồi rẽ trái.',gl:{straight:'thẳng','turn left':'rẽ trái'}},
+      {en:'Follow me, please.',vi:'Mời bạn đi theo tôi.',gl:{}},
+      {en:"I'm not sure — let me find someone to help.",vi:'Tôi không chắc — để tôi tìm người hỗ trợ.',gl:{'not sure':'không chắc'}}
     ],
     vocab:[
-      {en:'gastritis',ipa:'ɡæˈstraɪtɪs',vi:'viêm dạ dày'},
-      {en:'appendicitis',ipa:'əˌpendɪˈsaɪtɪs',vi:'viêm ruột thừa'},
-      {en:'hepatitis',ipa:'ˌhepəˈtaɪtɪs',vi:'viêm gan'},
-      {en:'bronchitis',ipa:'brɒŋˈkaɪtɪs',vi:'viêm phế quản'},
-      {en:'arthritis',ipa:'ɑːˈθraɪtɪs',vi:'viêm khớp'},
-      {en:'dermatitis',ipa:'ˌdɜːməˈtaɪtɪs',vi:'viêm da'},
-      {en:'tonsillitis',ipa:'ˌtɒnsɪˈlaɪtɪs',vi:'viêm amidan'}
+      {en:'elevator',ipa:'ˈelɪveɪtər',vi:'thang máy'},
+      {en:'corridor',ipa:'ˈkɒrɪdɔː',vi:'hành lang'},
+      {en:'waiting room',ipa:'ˈweɪtɪŋ ruːm',vi:'phòng chờ'},
+      {en:'reception',ipa:'rɪˈsepʃən',vi:'lễ tân'},
+      {en:'ward',ipa:'wɔːd',vi:'khoa / phòng bệnh'},
+      {en:'restroom',ipa:'ˈrestruːm',vi:'nhà vệ sinh'},
+      {en:'outpatient clinic',ipa:'ˌaʊtˈpeɪʃənt ˈklɪnɪk',vi:'phòng khám ngoại trú'}
     ],
-    pq_en:'A patient asks: "What does appendicitis mean?" — Best response:',
-    pq_vi:'Bệnh nhân hỏi: "Appendicitis nghĩa là gì?" — Câu trả lời tốt nhất:',
+    pq_en:'Patient: "Where is the pharmacy?" — Which is the best response?',
+    pq_vi:'Bệnh nhân hỏi: "Where is the pharmacy?" — Câu trả lời tốt nhất là gì?',
     opts:[
-      {t:"It's a blood infection.",ok:false,gl:{}},
-      {t:'Appendicitis means inflammation of the appendix.',ok:true,gl:{appendicitis:'viêm ruột thừa',appendix:'ruột thừa'}},
-      {t:"It's a stomach surgery.",ok:false,gl:{}},
-      {t:"I'd need to check on that.",ok:false,gl:{}}
+      {t:"I don't know.",ok:false,gl:{}},
+      {t:'The pharmacy is on the ground floor, near the main entrance.',ok:true,gl:{pharmacy:'quầy dược','ground floor':'tầng trệt','main entrance':'lối vào chính'}},
+      {t:'Wait here.',ok:false,gl:{}},
+      {t:'Ask the reception.',ok:false,gl:{reception:'lễ tân'}}
     ],
-    tip_en:'Once a patient knows "-itis" = inflammation, they can decode dozens of diagnoses on their own.',
-    tip_vi:'Khi bệnh nhân hiểu "-itis" = viêm, họ có thể tự giải mã hàng chục chẩn đoán trong hồ sơ.'
+    tip_en:'"I\'m not sure — let me find someone" is always safer than a confident wrong answer.',
+    tip_vi:'Nếu không biết, đừng đoán — trung thực luôn tốt hơn tự tin mà nói sai.'
   },
   {
-    id:2, emoji:'❤️', tag:'Situation 2 / 4', en_tag:'Heart (cardio- / -cardia)',
-    en:'Decoding "cardio-" and "-cardia"', vi:'Giải mã "cardio-" và "-cardia"',
-    ctx_en:'An international colleague mentions a patient with "tachycardia." A medical student standing nearby looks puzzled.',
-    ctx_vi:'Đồng nghiệp quốc tế đề cập đến bệnh nhân bị "tachycardia." Một sinh viên y đứng gần trông bối rối.',
-    pt:'"Tachycardia" — what does that actually mean?',
-    pt_vi:'"Tachycardia" — từ đó thực ra có nghĩa là gì?',
+    id:2, emoji:'⏱️', tag:'Situation 2 / 4', en_tag:'Wait time',
+    en:'How long is the wait?', vi:'Hỏi thời gian chờ',
+    ctx_en:'The patient has been waiting a while. They stand up and ask as you walk past.',
+    ctx_vi:'Bệnh nhân đã ngồi chờ khá lâu. Họ đứng dậy và hỏi khi bạn đi ngang qua.',
+    pt:'How long is the wait?', pt_vi:'Chờ còn bao lâu nữa vậy?',
     phrases:[
-      {en:'The root "cardio-" or "-cardia" refers to the heart.',vi:'"Cardio-" hoặc "-cardia" đều liên quan đến tim.',gl:{'cardio-':'tim','-cardia':'tim'}},
-      {en:'Tachycardia means a fast heart rate — "tachy-" means fast.',vi:'Tachycardia là nhịp tim nhanh — "tachy-" có nghĩa là nhanh.',gl:{tachycardia:'nhịp tim nhanh','tachy-':'nhanh'}},
-      {en:'Bradycardia is the opposite — a slow heart rate.',vi:'Bradycardia ngược lại — là nhịp tim chậm.',gl:{bradycardia:'nhịp tim chậm','brady-':'chậm'}},
-      {en:'Cardiac arrest means the heart has stopped completely.',vi:'"Cardiac arrest" là tim ngừng đập hoàn toàn.',gl:{'cardiac arrest':'ngừng tim'}}
+      {en:'The wait is approximately 20 minutes.',vi:'Thời gian chờ khoảng 20 phút.',gl:{approximately:'khoảng / ước chừng'}},
+      {en:'The doctor is with another patient right now.',vi:'Bác sĩ đang khám cho bệnh nhân khác.',gl:{}},
+      {en:"We're running a little behind schedule today.",vi:'Hôm nay lịch khám bị trễ một chút.',gl:{'behind schedule':'trễ lịch'}},
+      {en:"Please have a seat — we'll call your name.",vi:'Mời bạn ngồi chờ — chúng tôi sẽ gọi tên.',gl:{'have a seat':'mời ngồi'}},
+      {en:'Let me check for you.',vi:'Để tôi kiểm tra cho bạn.',gl:{}}
     ],
     vocab:[
-      {en:'cardiac',ipa:'ˈkɑːdiæk',vi:'thuộc về tim'},
-      {en:'tachycardia',ipa:'ˌtækɪˈkɑːdiə',vi:'nhịp tim nhanh'},
-      {en:'bradycardia',ipa:'ˌbrædɪˈkɑːdiə',vi:'nhịp tim chậm'},
-      {en:'cardiomegaly',ipa:'ˌkɑːdiəʊˈmeɡəli',vi:'phì đại tim'},
-      {en:'cardiologist',ipa:'ˌkɑːdiˈɒlədʒɪst',vi:'bác sĩ tim mạch'},
-      {en:'myocardial',ipa:'ˌmaɪəʊˈkɑːdiəl',vi:'thuộc cơ tim'},
-      {en:'palpitation',ipa:'ˌpælpɪˈteɪʃən',vi:'hồi hộp / đánh trống ngực'}
+      {en:'appointment',ipa:'əˈpɔɪntmənt',vi:'lịch hẹn'},
+      {en:'queue',ipa:'kjuː',vi:'hàng chờ / số thứ tự'},
+      {en:'registration desk',ipa:'ˌredʒɪˈstreɪʃən desk',vi:'quầy đăng ký'},
+      {en:'consultation room',ipa:'ˌkɒnsəlˈteɪʃən ruːm',vi:'phòng khám'},
+      {en:'schedule',ipa:'ˈʃedjuːl',vi:'lịch trình'},
+      {en:'check-in',ipa:'ˈtʃek ɪn',vi:'làm thủ tục vào'}
     ],
-    pq_en:'The prefix "tachy-" in "tachycardia" means:',
-    pq_vi:'Tiền tố "tachy-" trong "tachycardia" có nghĩa là:',
+    pq_en:'Patient: "How long do I have to wait?" — Which is the best response?',
+    pq_vi:'Bệnh nhân hỏi: "How long do I have to wait?" — Câu trả lời tốt nhất là gì?',
     opts:[
-      {t:'Slow — Chậm',ok:false,gl:{}},
-      {t:'Heart — Tim',ok:false,gl:{}},
-      {t:'Fast — Nhanh',ok:true,gl:{}},
-      {t:'Painful — Đau',ok:false,gl:{}}
+      {t:"I don't know, maybe long.",ok:false,gl:{}},
+      {t:'The doctor is very busy.',ok:false,gl:{}},
+      {t:'You should have come earlier.',ok:false,gl:{}},
+      {t:'Please have a seat — the wait is approximately 20 minutes.',ok:true,gl:{approximately:'khoảng / ước chừng','have a seat':'mời ngồi'}}
     ],
-    tip_en:'"Tachy-" = fast everywhere in medicine: tachycardia (fast heart), tachypnea (fast breathing). Greek roots are consistent.',
-    tip_vi:'"Tachy-" luôn có nghĩa là nhanh: tachycardia (tim nhanh), tachypnea (thở nhanh). Gốc Hy Lạp rất nhất quán.'
+    tip_en:"Always pair information with an action — it shows the patient you're handling it.",
+    tip_vi:'Luôn kết hợp thông tin với hành động cụ thể — cho bệnh nhân thấy bạn đang xử lý.'
   },
   {
-    id:3, emoji:'🔪', tag:'Situation 3 / 4', en_tag:'Surgical removal (-ectomy)',
-    en:'Decoding "-ectomy" procedures', vi:'Giải mã tên phẫu thuật qua đuôi "-ectomy"',
-    ctx_en:'A patient is scheduled for an appendectomy. They are nervous and ask what the procedure name actually tells them.',
-    ctx_vi:'Bệnh nhân chuẩn bị phẫu thuật "appendectomy." Họ lo lắng và hỏi tên thủ thuật có nghĩa là gì.',
-    pt:'"Appendectomy" — can you tell what will happen just from the name?',
-    pt_vi:'"Appendectomy" — chỉ từ tên gọi, có thể biết điều gì sẽ xảy ra không?',
+    id:3, emoji:'🤝', tag:'Situation 3 / 4', en_tag:'Proactive approach',
+    en:'When you approach first', vi:'Chủ động giúp bệnh nhân',
+    ctx_en:"You notice a patient in the corridor — confused or unwell. You're the one who steps forward.",
+    ctx_vi:'Bạn thấy bệnh nhân đứng ở hành lang — trông bối rối hoặc không ổn. Bạn là người chủ động tiếp cận.',
+    pt:'(Patient standing still — not asking anything)', pt_vi:'Bệnh nhân không lên tiếng. Bạn phải là người mở lời trước.',
     phrases:[
-      {en:'The suffix "-ectomy" means surgical removal.',vi:'Đuôi "-ectomy" có nghĩa là phẫu thuật cắt bỏ.',gl:{'-ectomy':'cắt bỏ','surgical removal':'phẫu thuật cắt bỏ'}},
-      {en:'An appendectomy is the removal of the appendix.',vi:'Appendectomy là cắt bỏ ruột thừa.',gl:{appendectomy:'cắt ruột thừa',appendix:'ruột thừa'}},
-      {en:'A cholecystectomy removes the gallbladder — "chole" = bile, "cyst" = sac.',vi:'Cholecystectomy cắt túi mật — "chole" = mật, "cyst" = túi.',gl:{cholecystectomy:'cắt túi mật',gallbladder:'túi mật'}},
-      {en:'Know the root, and you know exactly what is being removed.',vi:'Biết gốc từ là biết chính xác cơ quan nào sẽ bị cắt bỏ.',gl:{}}
+      {en:'Excuse me, can I help you?',vi:'Xin lỗi, tôi có thể giúp gì cho bạn không?',gl:{}},
+      {en:'Are you okay?',vi:'Bạn có ổn không?',gl:{}},
+      {en:'Are you looking for something?',vi:'Bạn đang tìm gì vậy?',gl:{}},
+      {en:"Please come with me — I'll help you.",vi:'Mời đi theo tôi — tôi sẽ hỗ trợ bạn.',gl:{'come with me':'đi theo tôi'}},
+      {en:'Let me get a nurse for you right away.',vi:'Để tôi gọi điều dưỡng đến ngay.',gl:{'right away':'ngay lập tức'}}
     ],
     vocab:[
-      {en:'appendectomy',ipa:'ˌæpənˈdektəmi',vi:'cắt ruột thừa'},
-      {en:'cholecystectomy',ipa:'ˌkɒlɪsɪˈstektəmi',vi:'cắt túi mật'},
-      {en:'mastectomy',ipa:'mæˈstektəmi',vi:'cắt tuyến vú'},
-      {en:'tonsillectomy',ipa:'ˌtɒnsɪˈlektəmi',vi:'cắt amidan'},
-      {en:'hysterectomy',ipa:'ˌhɪstəˈrektəmi',vi:'cắt tử cung'},
-      {en:'nephrectomy',ipa:'nɪˈfrektəmi',vi:'cắt thận'},
-      {en:'gastrectomy',ipa:'ɡæˈstrektəmi',vi:'cắt dạ dày'}
+      {en:'nurse station',ipa:'nɜːs ˈsteɪʃən',vi:'trạm điều dưỡng'},
+      {en:'wheelchair',ipa:'ˈwiːltʃeər',vi:'xe lăn'},
+      {en:'distressed',ipa:'dɪˈstrest',vi:'đang lo lắng / khó chịu'},
+      {en:'first aid',ipa:'fɜːst eɪd',vi:'sơ cứu'},
+      {en:'emergency room',ipa:'ɪˈmɜːdʒənsi ruːm',vi:'phòng cấp cứu'},
+      {en:'escort',ipa:'ˈeskɔːt',vi:'dẫn đi / hỗ trợ đi kèm'}
     ],
-    pq_en:'A patient is listed for a "nephrectomy." Which organ is involved?',
-    pq_vi:'Bệnh nhân được chỉ định "nephrectomy." Cơ quan nào liên quan?',
+    pq_en:'You see a patient standing alone, looking distressed. Best first thing to say?',
+    pq_vi:'Bạn thấy bệnh nhân đứng một mình, trông lo lắng. Câu đầu tiên nên nói là gì?',
     opts:[
-      {t:'Liver — Gan',ok:false,gl:{}},
-      {t:'Lung — Phổi',ok:false,gl:{}},
-      {t:'Kidney — Thận',ok:true,gl:{}},
-      {t:'Gallbladder — Túi mật',ok:false,gl:{}}
+      {t:'What do you want?',ok:false,gl:{}},
+      {t:'Are you a patient here?',ok:false,gl:{}},
+      {t:'Excuse me, are you okay?',ok:true,gl:{}},
+      {t:'Please wait.',ok:false,gl:{}}
     ],
-    tip_en:'"Nephro-" = kidney (Greek). Nephrectomy = kidney removal. Nephrology = kidney specialty. One root, many clinical words.',
-    tip_vi:'"Nephro-" = thận (Hy Lạp). Nephrectomy = cắt thận. Nephrology = thận học. Một gốc từ, nhiều từ lâm sàng.'
+    tip_en:'"Are you okay?" shows immediate care — it opens the door for the patient to share what\'s wrong.',
+    tip_vi:'Thể hiện sự quan tâm trước, hỏi cụ thể sau — đây là thứ tự đúng khi tiếp cận bệnh nhân.'
   },
   {
-    id:4, emoji:'🩺', tag:'Situation 4 / 4', en_tag:'Specialists (-ologist)',
-    en:'Reading specialist titles (-ologist)', vi:'Đọc chức danh bác sĩ chuyên khoa (-ologist)',
-    ctx_en:"A patient shows you their referral letter. They can't understand who they're being sent to see.",
-    ctx_vi:'Bệnh nhân đưa giấy chuyển viện cho bạn xem. Họ không hiểu mình đang được chuyển đến gặp ai.',
-    pt:'"Referred to a gastroenterologist" — who exactly is that?',
-    pt_vi:'"Được chuyển đến gặp gastroenterologist" — đó là bác sĩ chuyên khoa gì vậy?',
+    id:4, emoji:'💊', tag:'Situation 4 / 4', en_tag:'Quick medical question',
+    en:'Quick question about medication or appointment', vi:'Hỏi về thuốc / lịch hẹn',
+    ctx_en:"A patient asks quickly about medication or their appointment — but you're not managing their case.",
+    ctx_vi:'Bệnh nhân hỏi nhanh về thuốc hoặc lịch hẹn — nhưng bạn không phụ trách ca bệnh này.',
+    pt:'What is this medication for?', pt_vi:'Thuốc này dùng để làm gì vậy?',
     phrases:[
-      {en:'"-ology" means the study of — and "-ologist" is the specialist.',vi:'"-ology" là nghiên cứu về — và "-ologist" là chuyên gia trong lĩnh vực đó.',gl:{'-ology':'nghiên cứu về','-ologist':'chuyên gia'}},
-      {en:'A gastroenterologist specializes in the digestive system.',vi:'Gastroenterologist là bác sĩ chuyên về hệ tiêu hóa.',gl:{gastroenterologist:'bác sĩ tiêu hóa','digestive system':'hệ tiêu hóa'}},
-      {en:'"Gastro-" means stomach, and "entero-" means intestine.',vi:'"Gastro-" là dạ dày, và "entero-" là ruột.',gl:{'gastro-':'dạ dày','entero-':'ruột'}},
-      {en:'Know the root, and you know exactly which organ that specialist treats.',vi:'Biết gốc từ là biết chính xác chuyên khoa đó điều trị cơ quan nào.',gl:{}}
+      {en:'Let me find the pharmacist for you.',vi:'Để tôi tìm dược sĩ cho bạn.',gl:{pharmacist:'dược sĩ'}},
+      {en:"I'd suggest asking the doctor directly.",vi:'Tôi đề nghị bạn hỏi trực tiếp bác sĩ.',gl:{}},
+      {en:'Let me check your records.',vi:'Để tôi kiểm tra hồ sơ bệnh án của bạn.',gl:{records:'hồ sơ bệnh án'}},
+      {en:'Your appointment is on Monday — let me confirm.',vi:'Lịch hẹn của bạn là thứ Hai — để tôi xác nhận lại.',gl:{confirm:'xác nhận',appointment:'lịch hẹn'}}
     ],
     vocab:[
-      {en:'cardiologist',ipa:'ˌkɑːdiˈɒlədʒɪst',vi:'bác sĩ tim mạch'},
-      {en:'neurologist',ipa:'njʊˈrɒlədʒɪst',vi:'bác sĩ thần kinh'},
-      {en:'gastroenterologist',ipa:'ˌɡæstrəʊˌentəˈrɒlədʒɪst',vi:'bác sĩ tiêu hóa'},
-      {en:'hepatologist',ipa:'ˌhepəˈtɒlədʒɪst',vi:'bác sĩ chuyên khoa gan'},
-      {en:'pulmonologist',ipa:'ˌpʌlməˈnɒlədʒɪst',vi:'bác sĩ hô hấp'},
-      {en:'dermatologist',ipa:'ˌdɜːməˈtɒlədʒɪst',vi:'bác sĩ da liễu'},
-      {en:'oncologist',ipa:'ɒŋˈkɒlədʒɪst',vi:'bác sĩ ung bướu'}
+      {en:'prescription',ipa:'prɪˈskrɪpʃən',vi:'toa thuốc'},
+      {en:'dosage',ipa:'ˈdəʊsɪdʒ',vi:'liều dùng'},
+      {en:'pharmacist',ipa:'ˈfɑːməsɪst',vi:'dược sĩ'},
+      {en:'refill',ipa:'ˌriːˈfɪl',vi:'lấy thêm thuốc'},
+      {en:'follow-up',ipa:'ˈfɒləʊ ʌp',vi:'tái khám'},
+      {en:'discharge',ipa:'ˈdɪstʃɑːdʒ',vi:'xuất viện'}
     ],
-    pq_en:'A referral letter says "see a dermatologist." This doctor specializes in:',
-    pq_vi:'Giấy chuyển viện ghi "gặp dermatologist." Bác sĩ này chuyên về:',
+    pq_en:'Patient: "What is this pill for?" — You\'re not sure. Best response?',
+    pq_vi:'Bệnh nhân hỏi: "What is this pill for?" — Bạn không chắc. Phản ứng đúng nhất là gì?',
     opts:[
-      {t:'Heart conditions — Bệnh tim',ok:false,gl:{}},
-      {t:'Digestive problems — Bệnh tiêu hóa',ok:false,gl:{}},
-      {t:'Skin conditions — Bệnh da liễu',ok:true,gl:{}},
-      {t:'Nerve disorders — Bệnh thần kinh',ok:false,gl:{}}
+      {t:"It's for pain. (đoán đại)",ok:false,gl:{}},
+      {t:'Let me find the pharmacist for you.',ok:true,gl:{pharmacist:'dược sĩ'}},
+      {t:'Read the label.',ok:false,gl:{label:'nhãn thuốc'}},
+      {t:"I don't know anything about medications.",ok:false,gl:{}}
     ],
-    tip_en:'"Dermato-" = skin (Greek). Dermatology, dermatitis, dermis — all skin-related. Greek roots work as a decoder ring.',
-    tip_vi:'"Dermato-" = da (Hy Lạp). Dermatology, dermatitis, dermis — đều về da. Gốc Hy Lạp là chìa khóa giải mã.'
+    tip_en:'"Let me find the pharmacist" = professional and safe. Never guess about medications.',
+    tip_vi:'Không bao giờ đoán về thuốc — đây là nguyên tắc an toàn bệnh nhân.'
   }
 ];
 
 var QZS = [
   {
-    en:'What does the suffix "-itis" mean in medical English?',
-    vi:'Hậu tố "-itis" trong tiếng Anh y khoa có nghĩa là gì?',
+    en:'Patient: "Where is the elevator?" — Best response:',
+    vi:'Bệnh nhân hỏi: "Where is the elevator?" — Câu trả lời tốt nhất là gì?',
     opts:[
-      {t:'Surgical removal — Cắt bỏ phẫu thuật',ok:false,gl:{}},
-      {t:'Inflammation — Viêm',ok:true,gl:{}},
-      {t:'Study of — Nghiên cứu về',ok:false,gl:{}},
-      {t:'Fast — Nhanh',ok:false,gl:{}}
+      {t:"I don't know.",ok:false,gl:{}},
+      {t:'Ask someone else.',ok:false,gl:{}},
+      {t:'Wait here.',ok:false,gl:{}},
+      {t:'The elevator is just down the hall, on your right.',ok:true,gl:{'down the hall':'cuối hành lang','on your right':'bên phải bạn'}}
     ],
-    exp_en:'"-itis" is a Greek suffix meaning inflammation. Gastritis, hepatitis, arthritis — all inflammations, all decodable.',
-    exp_vi:'"-itis" là hậu tố gốc Hy Lạp có nghĩa là viêm. Gastritis, hepatitis, arthritis — đều là các dạng viêm, đều có thể giải mã.'
+    exp_en:'"Just down the hall, on your right" — specific and polite. Always give directions rather than declining.',
+    exp_vi:'Câu trả lời cụ thể luôn tốt hơn từ chối. Kết hợp hướng và địa điểm rõ ràng.'
   },
   {
-    en:'"Tachy-" as in "tachycardia" means:',
-    vi:'"Tachy-" trong "tachycardia" có nghĩa là:',
+    en:'"We\'re running a little behind schedule today" means:',
+    vi:'"We\'re running a little behind schedule today" có nghĩa là gì?',
     opts:[
-      {t:'Slow — Chậm',ok:false,gl:{}},
-      {t:'Heart — Tim',ok:false,gl:{}},
-      {t:'Fast — Nhanh',ok:true,gl:{}},
-      {t:'Pain — Đau',ok:false,gl:{}}
+      {t:'Bác sĩ đang bận rộn.',ok:false,gl:{}},
+      {t:'Lịch khám bị trễ một chút.',ok:true,gl:{}},
+      {t:'Bệnh viện đang hoạt động chậm.',ok:false,gl:{}},
+      {t:'Bệnh nhân đến trễ.',ok:false,gl:{}}
     ],
-    exp_en:'"Tachy-" = fast (Greek). Tachycardia = fast heart. Tachypnea = fast breathing. Consistent across all medical terms.',
-    exp_vi:'"Tachy-" = nhanh (Hy Lạp). Tachycardia = tim nhanh. Tachypnea = thở nhanh. Nhất quán trong tất cả thuật ngữ y khoa.'
+    exp_en:'"Behind schedule" = delayed vs. planned timetable — polite and neutral, blames no one.',
+    exp_vi:'Cụm "running behind schedule" = trễ so với lịch dự kiến. Lịch sự, không đổ lỗi cho ai.'
   },
   {
-    en:'A patient is scheduled for a "nephrectomy." Which organ is involved?',
-    vi:'Bệnh nhân chuẩn bị phẫu thuật "nephrectomy." Cơ quan nào liên quan?',
+    en:'You see a patient in the hallway, looking worried. What should you say first?',
+    vi:'Bạn thấy bệnh nhân ở hành lang, trông lo lắng. Câu đầu tiên nên nói là gì?',
     opts:[
-      {t:'Liver — Gan',ok:false,gl:{}},
-      {t:'Lung — Phổi',ok:false,gl:{}},
-      {t:'Kidney — Thận',ok:true,gl:{}},
-      {t:'Gallbladder — Túi mật',ok:false,gl:{}}
+      {t:'Excuse me, are you okay?',ok:true,gl:{}},
+      {t:'Do you have an appointment?',ok:false,gl:{appointment:'lịch hẹn'}},
+      {t:'What happened?',ok:false,gl:{}},
+      {t:'Please go back to your room.',ok:false,gl:{}}
     ],
-    exp_en:'"Nephro-" = kidney (Greek). + "-ectomy" (removal) = surgical removal of the kidney. Decode any surgery by its root.',
-    exp_vi:'"Nephro-" = thận (Hy Lạp). + "-ectomy" (cắt bỏ) = phẫu thuật cắt thận. Giải mã tên phẫu thuật qua gốc từ.'
+    exp_en:'"Are you okay?" shows immediate care — opens the door for the patient to share what\'s wrong.',
+    exp_vi:'Thể hiện sự quan tâm trực tiếp trước — mở cánh cửa để bệnh nhân chia sẻ vấn đề.'
   },
   {
-    en:'Which of these words means "inflammation of the liver"?',
-    vi:'Từ nào dưới đây có nghĩa là "viêm gan"?',
+    en:"Patient asks about their appointment but you're not managing their case. What do you say?",
+    vi:'Bệnh nhân hỏi về lịch hẹn nhưng bạn không phụ trách ca bệnh này. Nên nói gì?',
     opts:[
-      {t:'Gastritis — Viêm dạ dày',ok:false,gl:{}},
-      {t:'Arthritis — Viêm khớp',ok:false,gl:{}},
-      {t:'Hepatitis — Viêm gan',ok:true,gl:{}},
-      {t:'Bronchitis — Viêm phế quản',ok:false,gl:{}}
+      {t:'Your appointment is next week. (đoán)',ok:false,gl:{}},
+      {t:"I don't know.",ok:false,gl:{}},
+      {t:'Check with the front desk later.',ok:false,gl:{'front desk':'quầy lễ tân'}},
+      {t:'Let me find someone who can check that for you.',ok:true,gl:{}}
     ],
-    exp_en:'"Hepato-" = liver. Hepatitis = liver inflammation. Same root: hepatologist (liver specialist), hepatomegaly (enlarged liver).',
-    exp_vi:'"Hepato-" = gan. Hepatitis = viêm gan. Cùng gốc: hepatologist (bác sĩ gan), hepatomegaly (gan to).'
+    exp_en:'"Let me find someone" = active help without guessing. Better than a flat "I don\'t know."',
+    exp_vi:'Chủ động tìm người hỗ trợ luôn tốt hơn nói "Tôi không biết" và bỏ đi.'
   },
   {
-    en:'A referral says "see a pulmonologist." This doctor specializes in:',
-    vi:'Giấy chuyển viện ghi "gặp pulmonologist." Bác sĩ này chuyên về:',
+    en:'Which phrase do you use when you physically walk WITH the patient to show them the way?',
+    vi:'Câu nào dùng khi bạn tự dẫn đường cho bệnh nhân (đi cùng, không chỉ mô tả bằng lời)?',
     opts:[
-      {t:'Heart — Tim',ok:false,gl:{}},
-      {t:'Lungs — Phổi',ok:true,gl:{}},
-      {t:'Digestive system — Hệ tiêu hóa',ok:false,gl:{}},
-      {t:'Nervous system — Hệ thần kinh',ok:false,gl:{}}
+      {t:'Follow me, please.',ok:true,gl:{}},
+      {t:'Please have a seat.',ok:false,gl:{'have a seat':'mời ngồi'}},
+      {t:"We'll call your name soon.",ok:false,gl:{}},
+      {t:'The wait is 20 minutes.',ok:false,gl:{}}
     ],
-    exp_en:'"Pulmo-" = lung (Latin). Pulmonologist = lung specialist. Pulmonary = relating to the lungs. Latin roots work the same way.',
-    exp_vi:'"Pulmo-" = phổi (Latin). Pulmonologist = bác sĩ hô hấp. Pulmonary = thuộc về phổi. Gốc Latin hoạt động tương tự.'
+    exp_en:'"Follow me, please" means you walk together — unlike verbal directions which leave the patient alone.',
+    exp_vi:'"Follow me, please" dùng khi bạn tự dẫn bệnh nhân đi — khác với chỉ mô tả bằng lời.'
   }
 ];
 
 /* ── STATE ────────────────────────────────────────────────── */
 var S = {
   screen: 'welcome',
-  si: 0,
-  phase: 'learn',
-  pqSel: null,
-  sOpts: null,
-  qi: 0,
-  allOpts: [],
-  qSel: null,
-  qDone: false,
-  qScore: 0
+  si: 0,           // current situation index
+  phase: 'learn',  // 'learn' | 'practice'
+  pqSel: null,     // practice question selected option index
+  sOpts: null,     // shuffled opts for current situation
+  qi: 0,           // quiz question index
+  allOpts: [],     // shuffled opts for each quiz question
+  qSel: null,      // quiz selected option index
+  qDone: false,    // current quiz Q answered?
+  qScore: 0        // quiz running score
 };
 
 /* ── HELPERS ──────────────────────────────────────────────── */
@@ -420,15 +450,15 @@ function renderWelcome() {
     +'</div>';
   }).join('');
 
-  var badges = [['⏱️','~15 min'],['🔑','4 word families'],['📝','5-Q quiz'],['🆓','Free']].map(function(x){
+  var badges = [['⏱️','~15 min'],['🎯','4 situations'],['📝','5-Q quiz'],['🆓','Free']].map(function(x){
     return '<span style="padding:5px 12px;border-radius:20px;border:2px solid #2A2A2A;font-size:12px;font-weight:800;background:#fff;box-shadow:2px 2px 0 #2A2A2A">'+x[0]+' '+x[1]+'</span>';
   }).join('');
 
   var canDoItems = [
-    {en:'Decode any "-itis" word in a chart or discharge note', vi:'Giải mã bất kỳ từ "-itis" nào trong hồ sơ bệnh án'},
-    {en:'Explain cardiac prefixes: tachy-, brady-, cardio-', vi:'Giải thích tiền tố tim mạch: tachy-, brady-, cardio-'},
-    {en:'Understand exactly what any "-ectomy" procedure removes', vi:'Biết "-ectomy" là phẫu thuật cắt bỏ cơ quan nào'},
-    {en:'Identify a specialist from their title alone (-ologist)', vi:'Nhận biết chuyên khoa chỉ từ chức danh (-ologist)'}
+    {en:'Give directions to any hospital area', vi:'Chỉ đường đến các khu vực trong bệnh viện'},
+    {en:'Handle a patient\'s wait-time question professionally', vi:'Trả lời câu hỏi chờ đợi một cách chuyên nghiệp'},
+    {en:'Approach a distressed patient in the corridor first', vi:'Chủ động tiếp cận bệnh nhân cần hỗ trợ'},
+    {en:'Redirect medication & appointment questions safely', vi:'Xử lý câu hỏi về thuốc / lịch hẹn đúng cách'}
   ];
   var canDoRows = canDoItems.map(function(item){
     return '<div style="display:flex;align-items:flex-start;gap:9px;padding:5px 0">'
@@ -444,46 +474,26 @@ function renderWelcome() {
     +canDoRows
   +'</div>';
 
-  /* Root decoder teaser */
-  var rootTeaser = '<div style="background:#FFF7DC;border-radius:14px;padding:12px 15px;border:2.5px solid #D48A00;box-shadow:3px 3px 0 #A86400;margin-bottom:14px">'
-    +'<div style="font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#A86400;margin-bottom:8px">The pattern you\'ll unlock — Mã bạn sẽ giải được</div>'
-    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">'
-    +[
-      {root:'hepato-',meaning:'liver · gan',word:'hepatitis'},
-      {root:'tachy-',meaning:'fast · nhanh',word:'tachycardia'},
-      {root:'nephro-',meaning:'kidney · thận',word:'nephrectomy'},
-      {root:'-ologist',meaning:'specialist · chuyên gia',word:'cardiologist'}
-    ].map(function(r){
-      return '<div style="background:#fff;border-radius:8px;border:1.5px solid #D48A0040;padding:7px 9px">'
-        +'<div style="font-size:10px;font-family:monospace;color:#A86400;font-weight:700;margin-bottom:1px">'+esc(r.root)+'</div>'
-        +'<div style="font-size:11px;color:#888;font-style:italic;margin-bottom:3px">'+esc(r.meaning)+'</div>'
-        +'<div style="font-size:12px;font-weight:800;color:#2A2A2A">→ '+esc(r.word)+'</div>'
-      +'</div>';
-    }).join('')
-    +'</div>'
-  +'</div>';
-
   return '<div>'
     +'<div style="height:10px;background:linear-gradient(90deg,#E84D6A,#D48A00,#1CB897,#7B5EA7);border-bottom:2.5px solid #2A2A2A"></div>'
     +'<div style="max-width:460px;margin:0 auto;padding:24px 16px" class="su">'
       +'<div style="text-align:center;margin-bottom:24px">'
-        +'<div class="wobble" style="width:80px;height:80px;border-radius:50%;border:3px solid #2A2A2A;background:#fff;box-shadow:5px 5px 0 #2A2A2A;display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 16px">🧠</div>'
-        +'<h1 class="hf" style="font-size:22px;font-weight:800;line-height:1.35;color:#2A2A2A;margin:0 0 4px">You already know Medical English</h1>'
-        +'<div style="font-size:13px;color:#AAA;font-style:italic;margin-bottom:16px">Bạn đã biết Medical English rồi</div>'
+        +'<div class="wobble" style="width:80px;height:80px;border-radius:50%;border:3px solid #2A2A2A;background:#fff;box-shadow:5px 5px 0 #2A2A2A;display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 16px">🏥</div>'
+        +'<h1 class="hf" style="font-size:22px;font-weight:800;line-height:1.35;color:#2A2A2A;margin:0 0 4px">When a patient stops you in the hallway</h1>'
+        +'<div style="font-size:13px;color:#AAA;font-style:italic;margin-bottom:16px">Khi bệnh nhân bắt chuyện ngoài hành lang</div>'
         +'<div style="background:#fff;border-radius:16px;padding:14px 16px;border:2.5px solid #DDD;box-shadow:4px 4px 0 #CCC;text-align:left;margin-bottom:20px">'
-          +'<div style="margin-bottom:8px"><div style="font-size:13px;color:#2A2A2A;line-height:1.6">You\'re reading a patient\'s discharge summary.</div><div style="font-size:12px;color:#AAA;font-style:italic;line-height:1.5">Bạn đang đọc phiếu xuất viện của bệnh nhân.</div></div>'
-          +'<div style="margin-bottom:8px"><div style="font-size:13px;color:#2A2A2A;line-height:1.6">You see: <strong>hepatitis, tachycardia, appendectomy, gastroenterologist.</strong></div><div style="font-size:12px;color:#AAA;font-style:italic;line-height:1.5">Bạn thấy các từ này trong hồ sơ.</div></div>'
-          +'<div><div style="font-size:13px;font-weight:900;color:#2A2A2A;line-height:1.6">You already know what they mean — let\'s prove it.</div><div style="font-size:12px;color:#AAA;font-style:italic;line-height:1.5">Bạn đã biết chúng nghĩa là gì — hãy chứng minh điều đó.</div></div>'
+          +'<div style="margin-bottom:8px"><div style="font-size:13px;color:#2A2A2A;line-height:1.6">You\'re walking through the hospital corridor.</div><div style="font-size:12px;color:#AAA;font-style:italic;line-height:1.5">Bạn đang đi trong hành lang bệnh viện.</div></div>'
+          +'<div style="margin-bottom:8px"><div style="font-size:13px;color:#2A2A2A;line-height:1.6">A foreign patient stops you and asks…</div><div style="font-size:12px;color:#AAA;font-style:italic;line-height:1.5">Một bệnh nhân nước ngoài dừng lại và hỏi…</div></div>'
+          +'<div><div style="font-size:13px;font-weight:900;color:#2A2A2A;line-height:1.6">What do you say?</div><div style="font-size:12px;color:#AAA;font-style:italic;line-height:1.5">Phải nói gì đây?</div></div>'
         +'</div>'
       +'</div>'
-      +rootTeaser
       +'<div style="background:#fff;border-radius:16px;padding:14px 16px;border:2.5px solid #2A2A2A;box-shadow:4px 4px 0 #2A2A2A;margin-bottom:14px">'
         +'<div style="font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:#2A2A2A;font-weight:800;margin-bottom:10px">In this lesson — Nội dung bài học</div>'
         +sitRows
       +'</div>'
       +canDoBlock
       +'<div style="display:flex;gap:8px;margin-bottom:20px;justify-content:center;flex-wrap:wrap">'+badges+'</div>'
-      +'<button class="mbtn" style="background:#FFD166;color:#2A2A2A" onclick="startLesson()">🔑 Let\'s decode! — Bắt đầu giải mã ngay</button>'
+      +'<button class="mbtn" style="background:#FFD166;color:#2A2A2A" onclick="startLesson()">🚀 Let\'s go! — Bắt đầu học ngay</button>'
     +'</div>'
   +'</div>';
 }
@@ -502,8 +512,10 @@ function renderSit() {
   var opts = S.sOpts;
   var sel = S.pqSel;
   var answered = sel !== null;
+  var okIdx = opts ? opts.findIndex(function(o){ return o.ok; }) : -1;
   var isProxy = s.pt.charAt(0) === '(';
 
+  /* Bubble */
   var bubble = '<div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:6px">'
     +'<div style="width:38px;height:38px;border-radius:50%;background:#EEE;border:2.5px solid #2A2A2A;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;margin-top:2px">👤</div>'
     +'<div style="flex:1">'
@@ -517,6 +529,7 @@ function renderSit() {
     +'</div>'
   +'</div>';
 
+  /* Tags & title */
   var header = '<div class="su" style="margin-bottom:14px">'
     +'<div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">'
       +'<span style="padding:3px 10px;border-radius:20px;border:2px solid '+th.c+';background:'+th.bg+';color:'+th.c+';font-size:11px;font-weight:800">'+esc(s.tag)+'</span>'
@@ -534,6 +547,7 @@ function renderSit() {
   var content = '';
 
   if (S.phase === 'learn') {
+    /* Phrases */
     var phrases = s.phrases.map(function(p,i){
       var border = i < s.phrases.length-1 ? 'margin-bottom:14px;padding-bottom:14px;border-bottom:1.5px dashed #EEE' : '';
       return '<div style="'+border+';display:flex;align-items:flex-start;gap:9px">'
@@ -550,6 +564,7 @@ function renderSit() {
       +'</div>';
     }).join('');
 
+    /* Vocab chips — tappable for audio */
     var chips = s.vocab.map(function(v){
       return '<button onclick="speak(this.dataset.w)" data-w="'+esc(v.en)+'" '
         +'style="display:inline-flex;flex-direction:column;align-items:center;padding:7px 12px;border-radius:14px;border:2px solid '+th.c+'70;background:'+th.c+'14;gap:1px;cursor:pointer;-webkit-appearance:none;appearance:none;box-shadow:2px 2px 0 '+th.c+'35;transition:transform .1s,box-shadow .1s;text-align:center" '
@@ -571,7 +586,7 @@ function renderSit() {
         +'<div style="font-size:12px;color:#888;font-style:italic;line-height:1.7">'+esc(s.ctx_vi)+'</div>'
       +'</div>'
       +'<div style="margin-bottom:10px">'
-        +'<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#888;font-weight:800;margin-bottom:7px">Patient says — Bệnh nhân / Sinh viên hỏi</div>'
+        +'<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#888;font-weight:800;margin-bottom:7px">Patient says — Bệnh nhân nói</div>'
         +bubble
       +'</div>'
       +'<div style="background:#fff;border-radius:16px;padding:14px 16px;border:2.5px solid #2A2A2A;box-shadow:4px 4px 0 #555;margin-bottom:10px">'
@@ -580,7 +595,7 @@ function renderSit() {
       +'</div>'
       +'<div style="background:'+th.bg+';border-radius:16px;padding:14px 16px;border:2.5px solid '+th.sh+';box-shadow:4px 4px 0 '+th.sh+';margin-bottom:16px">'
         +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">'
-          +'<div style="font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:'+th.c+';font-weight:800">Word family — Từ vựng họ từ</div>'
+          +'<div style="font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:'+th.c+';font-weight:800">Additional vocab — Từ vựng bổ sung</div>'
           +'<button id="speed-toggle" onclick="toggleSpeed()" style="font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;border:1.5px solid #CCC;background:#f0f0f0;color:#777;cursor:pointer;-webkit-appearance:none;appearance:none;box-shadow:2px 2px 0 #CCC;transition:all .15s;white-space:nowrap">🔊 Normal</button>'
         +'</div>'
         +'<div style="display:flex;flex-wrap:wrap;gap:7px">'+chips+'</div>'
@@ -589,6 +604,7 @@ function renderSit() {
     +'</div>';
 
   } else {
+    /* PRACTICE phase */
     var optButtons = opts.map(function(op,i){
       var isMe = sel === i;
       var isOk = op.ok;
@@ -750,10 +766,10 @@ function renderDone() {
   else g={ic:'📚',en:'Keep going!',vi:'Ôn thêm nhé!',bg:'#FEF0F4',bd:'#E84D6A',sh:'#B8304A',co:'#A82040'};
 
   var achievementItems = [
-    {emoji:'🔥', en:'Decode any "-itis" word in a clinical document', vi:'Giải mã từ "-itis" trong tài liệu lâm sàng'},
-    {emoji:'❤️', en:'Explain tachycardia vs bradycardia in plain English', vi:'Giải thích tachycardia và bradycardia'},
-    {emoji:'🔪', en:'Understand exactly what any "-ectomy" removes', vi:'Hiểu "-ectomy" là cắt bỏ cơ quan nào'},
-    {emoji:'🩺', en:'Identify specialists from their title alone', vi:'Nhận biết chuyên khoa chỉ từ chức danh -ologist'}
+    {emoji:'🗺️', en:'Give directions to any hospital area', vi:'Chỉ đường đến các khu vực trong BV'},
+    {emoji:'⏱️', en:'Manage wait-time questions professionally', vi:'Xử lý câu hỏi chờ đợi chuyên nghiệp'},
+    {emoji:'🤝', en:'Approach a distressed patient first', vi:'Chủ động tiếp cận bệnh nhân cần giúp'},
+    {emoji:'💊', en:'Redirect medication & appointment questions safely', vi:'Xử lý câu hỏi thuốc/lịch hẹn đúng cách'}
   ];
   var achievementRecap = achievementItems.map(function(r){
     return '<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px dashed #D5F5EE">'
@@ -765,40 +781,17 @@ function renderDone() {
     +'</div>';
   }).join('');
 
-  /* Root summary card */
-  var rootSummary = '<div style="background:#FFF7DC;border-radius:14px;padding:12px 15px;border:2.5px solid #D48A00;box-shadow:3px 3px 0 #A86400;margin-bottom:10px">'
-    +'<div style="font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#A86400;margin-bottom:8px">Roots you now own — Gốc từ bạn vừa nắm</div>'
-    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">'
-    +[
-      {root:'-itis',en:'inflammation',vi:'viêm'},
-      {root:'tachy-',en:'fast',vi:'nhanh'},
-      {root:'brady-',en:'slow',vi:'chậm'},
-      {root:'cardio-',en:'heart',vi:'tim'},
-      {root:'-ectomy',en:'surgical removal',vi:'cắt bỏ'},
-      {root:'nephro-',en:'kidney',vi:'thận'},
-      {root:'-ologist',en:'specialist',vi:'chuyên gia'},
-      {root:'hepato-',en:'liver',vi:'gan'}
-    ].map(function(r){
-      return '<div style="background:#fff;border-radius:7px;border:1.5px solid #D48A0035;padding:5px 8px;display:flex;align-items:center;gap:6px">'
-        +'<span style="font-size:11px;font-family:monospace;font-weight:700;color:#A86400;flex-shrink:0">'+esc(r.root)+'</span>'
-        +'<span style="font-size:10px;color:#888;font-style:italic">'+esc(r.vi)+'</span>'
-      +'</div>';
-    }).join('')
-    +'</div>'
-  +'</div>';
-
   return '<div style="max-width:460px;margin:0 auto;padding:28px 16px" class="pop">'
     +'<div style="text-align:center;margin-bottom:20px">'
       +'<div style="font-size:64px;margin-bottom:12px">'+g.ic+'</div>'
-      +'<h2 class="hf" style="font-size:22px;font-weight:800;margin-bottom:4px;color:#2A2A2A">Lesson 2 complete!</h2>'
-      +'<div style="font-size:13px;color:#AAA;font-style:italic;margin-bottom:14px">Bài 2 hoàn thành!</div>'
+      +'<h2 class="hf" style="font-size:22px;font-weight:800;margin-bottom:4px;color:#2A2A2A">Lesson 1 complete!</h2>'
+      +'<div style="font-size:13px;color:#AAA;font-style:italic;margin-bottom:14px">Bài 1 hoàn thành!</div>'
       +'<div style="display:inline-block;padding:14px 32px;background:'+g.bg+';border:3px solid '+g.bd+';border-radius:18px;box-shadow:5px 5px 0 '+g.sh+'">'
         +'<div class="hf" style="font-size:48px;font-weight:800;color:'+g.co+'">'+S.qScore+'/'+total+'</div>'
         +'<div style="font-size:13px;font-weight:800;color:'+g.co+'">'+g.en+'</div>'
         +'<div style="font-size:12px;color:'+g.co+';font-style:italic">'+g.vi+'</div>'
       +'</div>'
     +'</div>'
-    +rootSummary
     +'<div style="background:#fff;border-radius:16px;padding:14px 16px;border:2.5px solid #1CB897;box-shadow:4px 4px 0 #0D8A6D;margin-bottom:10px">'
       +'<div style="font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:#0D8A6D;font-weight:800;margin-bottom:10px">You can now — Bạn đã làm được:</div>'
       +achievementRecap
@@ -882,6 +875,7 @@ function renderFlashcard() {
   var total = buildAllVocab().length;
   var deck  = S.fcDeck || [];
 
+  /* ── Completion screen ──────────────────────────────── */
   if (deck.length === 0) {
     return '<div style="max-width:460px;margin:0 auto;padding:28px 16px" class="pop">'
       +'<div style="text-align:center;margin-bottom:22px">'
@@ -898,11 +892,13 @@ function renderFlashcard() {
     +'</div>';
   }
 
+  /* ── Active card ────────────────────────────────────── */
   var v   = deck[0];
   var done = total - deck.length;
   var pct  = Math.round(done / total * 100);
 
   var cardHtml = S.fcFlipped
+    /* Back side */
     ? '<div class="pop" style="background:#F0EAFF;border-radius:20px;border:2.5px solid #7B5EA7;box-shadow:5px 5px 0 #5C4080;padding:32px 20px;text-align:center;margin-bottom:12px">'
         +'<div style="font-size:13px;font-family:monospace;color:#7B5EA7;font-weight:600;margin-bottom:6px">/'+esc(v.ipa)+'/</div>'
         +'<div class="hf" style="font-size:30px;font-weight:800;color:#2A2A2A;margin-bottom:10px">'+esc(v.en)+'</div>'
@@ -914,6 +910,7 @@ function renderFlashcard() {
         +'<button onclick="fcAgain()" class="mbtn" style="background:#FEF0F4;color:#A82040;border-color:#E84D6A;box-shadow:4px 4px 0 #B8304A">✗ Again</button>'
         +'<button onclick="fcGotIt()" class="mbtn" style="background:#E4FAF4;color:#0A7A60;border-color:#1CB897;box-shadow:4px 4px 0 #0D8A6D">✓ Got it</button>'
       +'</div>'
+    /* Front side */
     : '<button onclick="fcFlip()" style="width:100%;background:#fff;border-radius:20px;border:2.5px solid #2A2A2A;box-shadow:5px 5px 0 #2A2A2A;padding:52px 20px;text-align:center;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:12px;-webkit-appearance:none;appearance:none;transition:transform .1s,box-shadow .1s" '
         +'onmousedown="this.style.transform=\'translate(2px,2px)\';this.style.boxShadow=\'2px 2px 0 #2A2A2A\'" '
         +'onmouseup="this.style.transform=\'\';this.style.boxShadow=\'5px 5px 0 #2A2A2A\'" '
