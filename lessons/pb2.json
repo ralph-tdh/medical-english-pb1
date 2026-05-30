@@ -1,0 +1,693 @@
+{
+  "meta": {
+    "id": "pb2",
+    "version": 1,
+    "title_en": "You Already Know Medical English",
+    "title_vi": "Bạn đã biết Medical English rồi",
+    "level": 1,
+    "stage": "1A",
+    "cefr": "A2–B1",
+    "hero_emoji": "🧠",
+    "complete_en": "Lesson 2 complete!",
+    "complete_vi": "Bài 2 hoàn thành!"
+  },
+  "config": {
+    "next": {
+      "label": "Lesson 3 — Coming soon",
+      "label_vi": "Bài 3 — Sắp ra mắt",
+      "free": true
+    }
+  },
+  "welcome": {
+    "scenario": [
+      {
+        "en": "You're reading a patient's discharge summary.",
+        "vi": "Bạn đang đọc phiếu xuất viện của bệnh nhân."
+      },
+      {
+        "en": "You see: hepatitis, tachycardia, appendectomy, gastroenterologist.",
+        "vi": "Bạn thấy các từ này trong hồ sơ."
+      },
+      {
+        "en": "You already know what they mean — let's prove it.",
+        "vi": "Bạn đã biết chúng nghĩa là gì — hãy chứng minh điều đó.",
+        "bold": true
+      }
+    ],
+    "can_do": [
+      {
+        "en": "Decode any \"-itis\" word in a chart or discharge note",
+        "vi": "Giải mã bất kỳ từ \"-itis\" nào trong hồ sơ bệnh án"
+      },
+      {
+        "en": "Explain cardiac prefixes: tachy-, brady-, cardio-",
+        "vi": "Giải thích tiền tố tim mạch: tachy-, brady-, cardio-"
+      },
+      {
+        "en": "Understand exactly what any \"-ectomy\" procedure removes",
+        "vi": "Biết \"-ectomy\" là phẫu thuật cắt bỏ cơ quan nào"
+      },
+      {
+        "en": "Identify a specialist from their title alone (-ologist)",
+        "vi": "Nhận biết chuyên khoa chỉ từ chức danh (-ologist)"
+      }
+    ],
+    "badges": [
+      {
+        "icon": "⏱️",
+        "label": "~15 min"
+      },
+      {
+        "icon": "🎯",
+        "label": "4 situations"
+      },
+      {
+        "icon": "📝",
+        "label": "5-Q quiz"
+      },
+      {
+        "icon": "🆓",
+        "label": "Free"
+      }
+    ],
+    "root_teaser": [
+      {
+        "root": "hepato-",
+        "meaning": "liver · gan",
+        "word": "hepatitis"
+      },
+      {
+        "root": "tachy-",
+        "meaning": "fast · nhanh",
+        "word": "tachycardia"
+      },
+      {
+        "root": "nephro-",
+        "meaning": "kidney · thận",
+        "word": "nephrectomy"
+      },
+      {
+        "root": "-ologist",
+        "meaning": "specialist · chuyên gia",
+        "word": "cardiologist"
+      }
+    ]
+  },
+  "done": {
+    "achievements": [
+      {
+        "emoji": "🔥",
+        "en": "Decode any \"-itis\" word in a clinical document",
+        "vi": "Giải mã từ \"-itis\" trong tài liệu lâm sàng"
+      },
+      {
+        "emoji": "❤️",
+        "en": "Explain tachycardia vs bradycardia in plain English",
+        "vi": "Giải thích tachycardia và bradycardia"
+      },
+      {
+        "emoji": "🔪",
+        "en": "Understand exactly what any \"-ectomy\" removes",
+        "vi": "Hiểu \"-ectomy\" là cắt bỏ cơ quan nào"
+      },
+      {
+        "emoji": "🩺",
+        "en": "Identify specialists from their title alone",
+        "vi": "Nhận biết chuyên khoa chỉ từ chức danh -ologist"
+      }
+    ]
+  },
+  "situations": [
+    {
+      "id": 1,
+      "emoji": "🔥",
+      "tag": "Situation 1 / 4",
+      "en_tag": "Inflammation (-itis)",
+      "en": "Decoding \"-itis\" words",
+      "vi": "Giải mã từ kết thúc bằng \"-itis\"",
+      "ctx_en": "A patient shows you their discharge summary. They point to the word \"gastritis\" and look confused.",
+      "ctx_vi": "Bệnh nhân đưa phiếu xuất viện cho bạn xem. Họ chỉ vào chữ \"gastritis\" và trông bối rối.",
+      "pt": "\"Gastritis\" — what does this actually mean?",
+      "pt_vi": "\"Gastritis\" — cái này thực ra nghĩa là gì vậy?",
+      "phrases": [
+        {
+          "en": "The suffix \"-itis\" means inflammation.",
+          "vi": "Đuôi \"-itis\" có nghĩa là viêm.",
+          "gl": {
+            "-itis": "viêm",
+            "inflammation": "viêm"
+          }
+        },
+        {
+          "en": "Gastritis means inflammation of the stomach.",
+          "vi": "Gastritis là viêm dạ dày.",
+          "gl": {
+            "Gastritis": "viêm dạ dày",
+            "stomach": "dạ dày"
+          }
+        },
+        {
+          "en": "You may have heard of hepatitis — that's inflammation of the liver.",
+          "vi": "Bạn có thể đã nghe về hepatitis — đó là viêm gan.",
+          "gl": {
+            "hepatitis": "viêm gan",
+            "liver": "gan"
+          }
+        },
+        {
+          "en": "Any word ending in \"-itis\" describes a type of inflammation.",
+          "vi": "Bất kỳ từ nào kết thúc bằng \"-itis\" đều mô tả một loại viêm.",
+          "gl": {}
+        }
+      ],
+      "vocab": [
+        {
+          "en": "gastritis",
+          "ipa": "ɡæˈstraɪtɪs",
+          "vi": "viêm dạ dày"
+        },
+        {
+          "en": "appendicitis",
+          "ipa": "əˌpendɪˈsaɪtɪs",
+          "vi": "viêm ruột thừa"
+        },
+        {
+          "en": "hepatitis",
+          "ipa": "ˌhepəˈtaɪtɪs",
+          "vi": "viêm gan"
+        },
+        {
+          "en": "bronchitis",
+          "ipa": "brɒŋˈkaɪtɪs",
+          "vi": "viêm phế quản"
+        },
+        {
+          "en": "arthritis",
+          "ipa": "ɑːˈθraɪtɪs",
+          "vi": "viêm khớp"
+        },
+        {
+          "en": "dermatitis",
+          "ipa": "ˌdɜːməˈtaɪtɪs",
+          "vi": "viêm da"
+        },
+        {
+          "en": "tonsillitis",
+          "ipa": "ˌtɒnsɪˈlaɪtɪs",
+          "vi": "viêm amidan"
+        }
+      ],
+      "pq_en": "A patient asks: \"What does appendicitis mean?\" — Best response:",
+      "pq_vi": "Bệnh nhân hỏi: \"Appendicitis nghĩa là gì?\" — Câu trả lời tốt nhất:",
+      "opts": [
+        {
+          "t": "It's a blood infection.",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Appendicitis means inflammation of the appendix.",
+          "ok": true,
+          "gl": {
+            "appendicitis": "viêm ruột thừa",
+            "appendix": "ruột thừa"
+          }
+        },
+        {
+          "t": "It's a stomach surgery.",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "I'd need to check on that.",
+          "ok": false,
+          "gl": {}
+        }
+      ],
+      "tip_en": "Once a patient knows \"-itis\" = inflammation, they can decode dozens of diagnoses on their own.",
+      "tip_vi": "Khi bệnh nhân hiểu \"-itis\" = viêm, họ có thể tự giải mã hàng chục chẩn đoán trong hồ sơ."
+    },
+    {
+      "id": 2,
+      "emoji": "❤️",
+      "tag": "Situation 2 / 4",
+      "en_tag": "Heart (cardio- / -cardia)",
+      "en": "Decoding \"cardio-\" and \"-cardia\"",
+      "vi": "Giải mã \"cardio-\" và \"-cardia\"",
+      "ctx_en": "An international colleague mentions a patient with \"tachycardia.\" A medical student standing nearby looks puzzled.",
+      "ctx_vi": "Đồng nghiệp quốc tế đề cập đến bệnh nhân bị \"tachycardia.\" Một sinh viên y đứng gần trông bối rối.",
+      "pt": "\"Tachycardia\" — what does that actually mean?",
+      "pt_vi": "\"Tachycardia\" — từ đó thực ra có nghĩa là gì?",
+      "phrases": [
+        {
+          "en": "The root \"cardio-\" or \"-cardia\" refers to the heart.",
+          "vi": "\"Cardio-\" hoặc \"-cardia\" đều liên quan đến tim.",
+          "gl": {
+            "cardio-": "tim",
+            "-cardia": "tim"
+          }
+        },
+        {
+          "en": "Tachycardia means a fast heart rate — \"tachy-\" means fast.",
+          "vi": "Tachycardia là nhịp tim nhanh — \"tachy-\" có nghĩa là nhanh.",
+          "gl": {
+            "tachycardia": "nhịp tim nhanh",
+            "tachy-": "nhanh"
+          }
+        },
+        {
+          "en": "Bradycardia is the opposite — a slow heart rate.",
+          "vi": "Bradycardia ngược lại — là nhịp tim chậm.",
+          "gl": {
+            "bradycardia": "nhịp tim chậm",
+            "brady-": "chậm"
+          }
+        },
+        {
+          "en": "Cardiac arrest means the heart has stopped completely.",
+          "vi": "\"Cardiac arrest\" là tim ngừng đập hoàn toàn.",
+          "gl": {
+            "cardiac arrest": "ngừng tim"
+          }
+        }
+      ],
+      "vocab": [
+        {
+          "en": "cardiac",
+          "ipa": "ˈkɑːdiæk",
+          "vi": "thuộc về tim"
+        },
+        {
+          "en": "tachycardia",
+          "ipa": "ˌtækɪˈkɑːdiə",
+          "vi": "nhịp tim nhanh"
+        },
+        {
+          "en": "bradycardia",
+          "ipa": "ˌbrædɪˈkɑːdiə",
+          "vi": "nhịp tim chậm"
+        },
+        {
+          "en": "cardiomegaly",
+          "ipa": "ˌkɑːdiəʊˈmeɡəli",
+          "vi": "phì đại tim"
+        },
+        {
+          "en": "cardiologist",
+          "ipa": "ˌkɑːdiˈɒlədʒɪst",
+          "vi": "bác sĩ tim mạch"
+        },
+        {
+          "en": "myocardial",
+          "ipa": "ˌmaɪəʊˈkɑːdiəl",
+          "vi": "thuộc cơ tim"
+        },
+        {
+          "en": "palpitation",
+          "ipa": "ˌpælpɪˈteɪʃən",
+          "vi": "hồi hộp / đánh trống ngực"
+        }
+      ],
+      "pq_en": "The prefix \"tachy-\" in \"tachycardia\" means:",
+      "pq_vi": "Tiền tố \"tachy-\" trong \"tachycardia\" có nghĩa là:",
+      "opts": [
+        {
+          "t": "Slow — Chậm",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Heart — Tim",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Fast — Nhanh",
+          "ok": true,
+          "gl": {}
+        },
+        {
+          "t": "Painful — Đau",
+          "ok": false,
+          "gl": {}
+        }
+      ],
+      "tip_en": "\"Tachy-\" = fast everywhere in medicine: tachycardia (fast heart), tachypnea (fast breathing). Greek roots are consistent.",
+      "tip_vi": "\"Tachy-\" luôn có nghĩa là nhanh: tachycardia (tim nhanh), tachypnea (thở nhanh). Gốc Hy Lạp rất nhất quán."
+    },
+    {
+      "id": 3,
+      "emoji": "🔪",
+      "tag": "Situation 3 / 4",
+      "en_tag": "Surgical removal (-ectomy)",
+      "en": "Decoding \"-ectomy\" procedures",
+      "vi": "Giải mã tên phẫu thuật qua đuôi \"-ectomy\"",
+      "ctx_en": "A patient is scheduled for an appendectomy. They are nervous and ask what the procedure name actually tells them.",
+      "ctx_vi": "Bệnh nhân chuẩn bị phẫu thuật \"appendectomy.\" Họ lo lắng và hỏi tên thủ thuật có nghĩa là gì.",
+      "pt": "\"Appendectomy\" — can you tell what will happen just from the name?",
+      "pt_vi": "\"Appendectomy\" — chỉ từ tên gọi, có thể biết điều gì sẽ xảy ra không?",
+      "phrases": [
+        {
+          "en": "The suffix \"-ectomy\" means surgical removal.",
+          "vi": "Đuôi \"-ectomy\" có nghĩa là phẫu thuật cắt bỏ.",
+          "gl": {
+            "-ectomy": "cắt bỏ",
+            "surgical removal": "phẫu thuật cắt bỏ"
+          }
+        },
+        {
+          "en": "An appendectomy is the removal of the appendix.",
+          "vi": "Appendectomy là cắt bỏ ruột thừa.",
+          "gl": {
+            "appendectomy": "cắt ruột thừa",
+            "appendix": "ruột thừa"
+          }
+        },
+        {
+          "en": "A cholecystectomy removes the gallbladder — \"chole\" = bile, \"cyst\" = sac.",
+          "vi": "Cholecystectomy cắt túi mật — \"chole\" = mật, \"cyst\" = túi.",
+          "gl": {
+            "cholecystectomy": "cắt túi mật",
+            "gallbladder": "túi mật"
+          }
+        },
+        {
+          "en": "Know the root, and you know exactly what is being removed.",
+          "vi": "Biết gốc từ là biết chính xác cơ quan nào sẽ bị cắt bỏ.",
+          "gl": {}
+        }
+      ],
+      "vocab": [
+        {
+          "en": "appendectomy",
+          "ipa": "ˌæpənˈdektəmi",
+          "vi": "cắt ruột thừa"
+        },
+        {
+          "en": "cholecystectomy",
+          "ipa": "ˌkɒlɪsɪˈstektəmi",
+          "vi": "cắt túi mật"
+        },
+        {
+          "en": "mastectomy",
+          "ipa": "mæˈstektəmi",
+          "vi": "cắt tuyến vú"
+        },
+        {
+          "en": "tonsillectomy",
+          "ipa": "ˌtɒnsɪˈlektəmi",
+          "vi": "cắt amidan"
+        },
+        {
+          "en": "hysterectomy",
+          "ipa": "ˌhɪstəˈrektəmi",
+          "vi": "cắt tử cung"
+        },
+        {
+          "en": "nephrectomy",
+          "ipa": "nɪˈfrektəmi",
+          "vi": "cắt thận"
+        },
+        {
+          "en": "gastrectomy",
+          "ipa": "ɡæˈstrektəmi",
+          "vi": "cắt dạ dày"
+        }
+      ],
+      "pq_en": "A patient is listed for a \"nephrectomy.\" Which organ is involved?",
+      "pq_vi": "Bệnh nhân được chỉ định \"nephrectomy.\" Cơ quan nào liên quan?",
+      "opts": [
+        {
+          "t": "Liver — Gan",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Lung — Phổi",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Kidney — Thận",
+          "ok": true,
+          "gl": {}
+        },
+        {
+          "t": "Gallbladder — Túi mật",
+          "ok": false,
+          "gl": {}
+        }
+      ],
+      "tip_en": "\"Nephro-\" = kidney (Greek). Nephrectomy = kidney removal. Nephrology = kidney specialty. One root, many clinical words.",
+      "tip_vi": "\"Nephro-\" = thận (Hy Lạp). Nephrectomy = cắt thận. Nephrology = thận học. Một gốc từ, nhiều từ lâm sàng."
+    },
+    {
+      "id": 4,
+      "emoji": "🩺",
+      "tag": "Situation 4 / 4",
+      "en_tag": "Specialists (-ologist)",
+      "en": "Reading specialist titles (-ologist)",
+      "vi": "Đọc chức danh bác sĩ chuyên khoa (-ologist)",
+      "ctx_en": "A patient shows you their referral letter. They can't understand who they're being sent to see.",
+      "ctx_vi": "Bệnh nhân đưa giấy chuyển viện cho bạn xem. Họ không hiểu mình đang được chuyển đến gặp ai.",
+      "pt": "\"Referred to a gastroenterologist\" — who exactly is that?",
+      "pt_vi": "\"Được chuyển đến gặp gastroenterologist\" — đó là bác sĩ chuyên khoa gì vậy?",
+      "phrases": [
+        {
+          "en": "\"-ology\" means the study of — and \"-ologist\" is the specialist.",
+          "vi": "\"-ology\" là nghiên cứu về — và \"-ologist\" là chuyên gia trong lĩnh vực đó.",
+          "gl": {
+            "-ology": "nghiên cứu về",
+            "-ologist": "chuyên gia"
+          }
+        },
+        {
+          "en": "A gastroenterologist specializes in the digestive system.",
+          "vi": "Gastroenterologist là bác sĩ chuyên về hệ tiêu hóa.",
+          "gl": {
+            "gastroenterologist": "bác sĩ tiêu hóa",
+            "digestive system": "hệ tiêu hóa"
+          }
+        },
+        {
+          "en": "\"Gastro-\" means stomach, and \"entero-\" means intestine.",
+          "vi": "\"Gastro-\" là dạ dày, và \"entero-\" là ruột.",
+          "gl": {
+            "gastro-": "dạ dày",
+            "entero-": "ruột"
+          }
+        },
+        {
+          "en": "Know the root, and you know exactly which organ that specialist treats.",
+          "vi": "Biết gốc từ là biết chính xác chuyên khoa đó điều trị cơ quan nào.",
+          "gl": {}
+        }
+      ],
+      "vocab": [
+        {
+          "en": "cardiologist",
+          "ipa": "ˌkɑːdiˈɒlədʒɪst",
+          "vi": "bác sĩ tim mạch"
+        },
+        {
+          "en": "neurologist",
+          "ipa": "njʊˈrɒlədʒɪst",
+          "vi": "bác sĩ thần kinh"
+        },
+        {
+          "en": "gastroenterologist",
+          "ipa": "ˌɡæstrəʊˌentəˈrɒlədʒɪst",
+          "vi": "bác sĩ tiêu hóa"
+        },
+        {
+          "en": "hepatologist",
+          "ipa": "ˌhepəˈtɒlədʒɪst",
+          "vi": "bác sĩ chuyên khoa gan"
+        },
+        {
+          "en": "pulmonologist",
+          "ipa": "ˌpʌlməˈnɒlədʒɪst",
+          "vi": "bác sĩ hô hấp"
+        },
+        {
+          "en": "dermatologist",
+          "ipa": "ˌdɜːməˈtɒlədʒɪst",
+          "vi": "bác sĩ da liễu"
+        },
+        {
+          "en": "oncologist",
+          "ipa": "ɒŋˈkɒlədʒɪst",
+          "vi": "bác sĩ ung bướu"
+        }
+      ],
+      "pq_en": "A referral letter says \"see a dermatologist.\" This doctor specializes in:",
+      "pq_vi": "Giấy chuyển viện ghi \"gặp dermatologist.\" Bác sĩ này chuyên về:",
+      "opts": [
+        {
+          "t": "Heart conditions — Bệnh tim",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Digestive problems — Bệnh tiêu hóa",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Skin conditions — Bệnh da liễu",
+          "ok": true,
+          "gl": {}
+        },
+        {
+          "t": "Nerve disorders — Bệnh thần kinh",
+          "ok": false,
+          "gl": {}
+        }
+      ],
+      "tip_en": "\"Dermato-\" = skin (Greek). Dermatology, dermatitis, dermis — all skin-related. Greek roots work as a decoder ring.",
+      "tip_vi": "\"Dermato-\" = da (Hy Lạp). Dermatology, dermatitis, dermis — đều về da. Gốc Hy Lạp là chìa khóa giải mã."
+    }
+  ],
+  "quiz": [
+    {
+      "en": "What does the suffix \"-itis\" mean in medical English?",
+      "vi": "Hậu tố \"-itis\" trong tiếng Anh y khoa có nghĩa là gì?",
+      "opts": [
+        {
+          "t": "Surgical removal — Cắt bỏ phẫu thuật",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Inflammation — Viêm",
+          "ok": true,
+          "gl": {}
+        },
+        {
+          "t": "Study of — Nghiên cứu về",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Fast — Nhanh",
+          "ok": false,
+          "gl": {}
+        }
+      ],
+      "exp_en": "\"-itis\" is a Greek suffix meaning inflammation. Gastritis, hepatitis, arthritis — all inflammations, all decodable.",
+      "exp_vi": "\"-itis\" là hậu tố gốc Hy Lạp có nghĩa là viêm. Gastritis, hepatitis, arthritis — đều là các dạng viêm, đều có thể giải mã."
+    },
+    {
+      "en": "\"Tachy-\" as in \"tachycardia\" means:",
+      "vi": "\"Tachy-\" trong \"tachycardia\" có nghĩa là:",
+      "opts": [
+        {
+          "t": "Slow — Chậm",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Heart — Tim",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Fast — Nhanh",
+          "ok": true,
+          "gl": {}
+        },
+        {
+          "t": "Pain — Đau",
+          "ok": false,
+          "gl": {}
+        }
+      ],
+      "exp_en": "\"Tachy-\" = fast (Greek). Tachycardia = fast heart. Tachypnea = fast breathing. Consistent across all medical terms.",
+      "exp_vi": "\"Tachy-\" = nhanh (Hy Lạp). Tachycardia = tim nhanh. Tachypnea = thở nhanh. Nhất quán trong tất cả thuật ngữ y khoa."
+    },
+    {
+      "en": "A patient is scheduled for a \"nephrectomy.\" Which organ is involved?",
+      "vi": "Bệnh nhân chuẩn bị phẫu thuật \"nephrectomy.\" Cơ quan nào liên quan?",
+      "opts": [
+        {
+          "t": "Liver — Gan",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Lung — Phổi",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Kidney — Thận",
+          "ok": true,
+          "gl": {}
+        },
+        {
+          "t": "Gallbladder — Túi mật",
+          "ok": false,
+          "gl": {}
+        }
+      ],
+      "exp_en": "\"Nephro-\" = kidney (Greek). + \"-ectomy\" (removal) = surgical removal of the kidney. Decode any surgery by its root.",
+      "exp_vi": "\"Nephro-\" = thận (Hy Lạp). + \"-ectomy\" (cắt bỏ) = phẫu thuật cắt thận. Giải mã tên phẫu thuật qua gốc từ."
+    },
+    {
+      "en": "Which of these words means \"inflammation of the liver\"?",
+      "vi": "Từ nào dưới đây có nghĩa là \"viêm gan\"?",
+      "opts": [
+        {
+          "t": "Gastritis — Viêm dạ dày",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Arthritis — Viêm khớp",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Hepatitis — Viêm gan",
+          "ok": true,
+          "gl": {}
+        },
+        {
+          "t": "Bronchitis — Viêm phế quản",
+          "ok": false,
+          "gl": {}
+        }
+      ],
+      "exp_en": "\"Hepato-\" = liver. Hepatitis = liver inflammation. Same root: hepatologist (liver specialist), hepatomegaly (enlarged liver).",
+      "exp_vi": "\"Hepato-\" = gan. Hepatitis = viêm gan. Cùng gốc: hepatologist (bác sĩ gan), hepatomegaly (gan to)."
+    },
+    {
+      "en": "A referral says \"see a pulmonologist.\" This doctor specializes in:",
+      "vi": "Giấy chuyển viện ghi \"gặp pulmonologist.\" Bác sĩ này chuyên về:",
+      "opts": [
+        {
+          "t": "Heart — Tim",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Lungs — Phổi",
+          "ok": true,
+          "gl": {}
+        },
+        {
+          "t": "Digestive system — Hệ tiêu hóa",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Nervous system — Hệ thần kinh",
+          "ok": false,
+          "gl": {}
+        }
+      ],
+      "exp_en": "\"Pulmo-\" = lung (Latin). Pulmonologist = lung specialist. Pulmonary = relating to the lungs. Latin roots work the same way.",
+      "exp_vi": "\"Pulmo-\" = phổi (Latin). Pulmonologist = bác sĩ hô hấp. Pulmonary = thuộc về phổi. Gốc Latin hoạt động tương tự."
+    }
+  ]
+}
