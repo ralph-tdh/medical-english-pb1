@@ -1,0 +1,26 @@
+[
+  {
+    "id": "pb1",
+    "emoji": "🏥",
+    "title_en": "When a patient stops you in the hallway",
+    "title_vi": "Khi bệnh nhân bắt chuyện ngoài hành lang",
+    "stage": "1B",
+    "cefr": "A2–B1",
+    "duration": "~15 min",
+    "situations": 4,
+    "quiz": 5,
+    "tier": "free"
+  },
+  {
+    "id": "pb2",
+    "emoji": "🧠",
+    "title_en": "You Already Know Medical English",
+    "title_vi": "Bạn đã biết Medical English rồi",
+    "stage": "1A",
+    "cefr": "A2–B1",
+    "duration": "~15 min",
+    "situations": 4,
+    "quiz": 5,
+    "tier": "free"
+  }
+]

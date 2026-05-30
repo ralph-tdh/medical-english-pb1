@@ -53,43 +53,137 @@
     ::-webkit-scrollbar{width:4px}
     ::-webkit-scrollbar-thumb{background:#DDD;border-radius:4px}
     #app{min-height:100vh;background:#FFFCF5}
+
+    /* ── PICKER ── */
+    .pk-wrap{max-width:460px;margin:0 auto;padding:28px 16px}
+    .pk-header{text-align:center;margin-bottom:28px}
+    .pk-logo{width:72px;height:72px;border-radius:50%;border:3px solid #2A2A2A;background:#fff;
+      box-shadow:5px 5px 0 #2A2A2A;display:flex;align-items:center;justify-content:center;
+      font-size:32px;margin:0 auto 14px}
+    .pk-card{
+      display:flex;align-items:center;gap:14px;
+      background:#fff;border:2.5px solid #2A2A2A;border-radius:16px;
+      padding:14px 16px;margin-bottom:12px;cursor:pointer;
+      box-shadow:4px 4px 0 #2A2A2A;text-align:left;width:100%;
+      -webkit-appearance:none;appearance:none;font-family:'Nunito',system-ui,sans-serif;
+      transition:transform .1s,box-shadow .1s;
+    }
+    .pk-card:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #2A2A2A}
+    .pk-emoji{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;
+      justify-content:center;font-size:26px;flex-shrink:0;border:2px solid}
+    .pk-meta{flex:1;min-width:0}
+    .pk-title{font-size:14px;font-weight:900;color:#2A2A2A;line-height:1.35;margin-bottom:3px}
+    .pk-vi{font-size:11px;color:#AAA;font-style:italic;margin-bottom:6px}
+    .pk-badges{display:flex;gap:5px;flex-wrap:wrap}
+    .pk-pill{font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px;border:1.5px solid;white-space:nowrap}
+    .pk-arrow{font-size:20px;color:#2A2A2A;flex-shrink:0;opacity:.4}
+    .pk-coming{opacity:.45;cursor:default;border-style:dashed}
+    .pk-coming:active{transform:none;box-shadow:4px 4px 0 #2A2A2A}
   </style>
 </head>
 <body>
 <div id="app"></div>
 
-<!-- Loader: reads ?lesson=<id>, fetches lessons/<id>.json, then boots the engine.
-     Falls back to an inline <script id="lesson-data"> block if present (standalone build). -->
 <script>
 (function () {
-  function boot() {
+  /* ── Tier colour tokens ── */
+  var TIERS = {
+    free:    { c:'#1CB897', bg:'#E4FAF4', sh:'#0D8A6D' },
+    premium: { c:'#7B5EA7', bg:'#F0EAFF', sh:'#5C4080' },
+    soon:    { c:'#AAA',    bg:'#F5F5F5', sh:'#CCC'    }
+  };
+  var STAGE_COLORS = {
+    '1A':'#E84D6A','1B':'#D48A00','2A':'#1CB897','2B':'#4A8FE8',
+    '3A':'#7B5EA7','3B':'#E84D6A','4A':'#D48A00','4B':'#1CB897',
+    '5A':'#4A8FE8','5B':'#7B5EA7'
+  };
+
+  function boot(lesson) {
+    window.LESSON = lesson;
     var s = document.createElement('script');
     s.src = 'engine.js';
     document.body.appendChild(s);
   }
+
   function fail(msg) {
     document.getElementById('app').innerHTML =
       '<div style="max-width:460px;margin:40px auto;padding:24px;font-family:sans-serif;color:#A82040;line-height:1.6">'
-      + '<b>Could not load lesson.</b><br>' + msg
-      + '<br><br><span style="color:#888;font-size:13px">Tip: open via a local server '
-      + '(<code>python -m http.server</code>) or use the standalone build — '
-      + 'browsers block <code>fetch()</code> over <code>file://</code>.</span></div>';
+      + '<b>Could not load lesson.</b><br>' + msg + '</div>';
   }
 
-  // 1) Standalone build: lesson JSON already inlined.
+  function renderPicker(lessons) {
+    var app = document.getElementById('app');
+    var cards = lessons.map(function(l) {
+      var th   = TIERS[l.tier] || TIERS.free;
+      var sc   = STAGE_COLORS[l.stage] || '#2A2A2A';
+      var coming = l.tier === 'soon';
+      return '<button class="pk-card'+(coming?' pk-coming':'')+'" '
+        + (coming ? '' : 'onclick="loadLesson(\''+l.id+'\')"') + '>'
+        +'<div class="pk-emoji" style="background:'+sc+'18;border-color:'+sc+'60;box-shadow:3px 3px 0 '+sc+'40">'+l.emoji+'</div>'
+        +'<div class="pk-meta">'
+          +'<div class="pk-title">'+l.title_en+'</div>'
+          +'<div class="pk-vi">'+l.title_vi+'</div>'
+          +'<div class="pk-badges">'
+            +'<span class="pk-pill" style="color:'+sc+';border-color:'+sc+'60;background:'+sc+'12">'+l.stage+' · '+l.cefr+'</span>'
+            +'<span class="pk-pill" style="color:'+sc+';border-color:'+sc+'60;background:'+sc+'12">⏱ '+l.duration+'</span>'
+            +'<span class="pk-pill" style="color:'+th.c+';border-color:'+th.c+'60;background:'+th.bg+'">'+
+              (coming ? '🔒 Soon' : l.tier === 'premium' ? '⭐ Premium' : '🆓 Free')+'</span>'
+          +'</div>'
+        +'</div>'
+        +'<div class="pk-arrow">'+(coming ? '🔒' : '→')+'</div>'
+      +'</button>';
+    }).join('');
+
+    app.innerHTML = '<div style="height:6px;background:linear-gradient(90deg,#E84D6A,#D48A00,#1CB897,#7B5EA7)"></div>'
+      +'<div class="pk-wrap su">'
+        +'<div class="pk-header">'
+          +'<div class="pk-logo wobble">📚</div>'
+          +'<h1 class="hf" style="font-size:24px;font-weight:800;color:#2A2A2A;margin-bottom:4px">Medical English</h1>'
+          +'<div style="font-size:13px;color:#AAA;font-style:italic;margin-bottom:24px">PocketBook — chọn bài để bắt đầu</div>'
+        +'</div>'
+        + cards
+      +'</div>';
+  }
+
+  window.loadLesson = function(id) {
+    document.getElementById('app').innerHTML =
+      '<div style="max-width:460px;margin:60px auto;text-align:center;font-family:sans-serif;color:#AAA">'
+      +'<div style="font-size:32px;margin-bottom:12px">⏳</div>'
+      +'<div style="font-size:14px">Đang tải bài học…</div></div>';
+    fetch('lessons/' + id + '.json')
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(function(data){ boot(data); })
+      .catch(function(e){ fail('lessons/'+id+'.json — '+e.message); });
+  };
+
+  /* ── Boot logic ── */
+
+  // 1) Standalone: JSON already inlined
   var inline = document.getElementById('lesson-data');
   if (inline) {
-    try { window.LESSON = JSON.parse(inline.textContent); boot(); return; }
-    catch (e) { return fail('Inline lesson JSON is invalid: ' + e.message); }
+    try { boot(JSON.parse(inline.textContent)); return; }
+    catch (e) { fail('Inline JSON invalid: ' + e.message); return; }
   }
 
-  // 2) Hosted build: fetch the lesson file by id.
+  // 2) Direct link with ?lesson=id
   var params = new URLSearchParams(window.location.search);
-  var id = params.get('lesson') || 'pb1';
-  fetch('lessons/' + id + '.json')
-    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-    .then(function (data) { window.LESSON = data; boot(); })
-    .catch(function (e) { fail('lessons/' + id + '.json — ' + e.message); });
+  var id = params.get('lesson');
+  if (id) {
+    fetch('lessons/' + id + '.json')
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(function(data){ boot(data); })
+      .catch(function(e){ fail('lessons/'+id+'.json — '+e.message); });
+    return;
+  }
+
+  // 3) No param → show lesson picker
+  fetch('lessons/index.json')
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(function(lessons){ renderPicker(lessons); })
+    .catch(function(){ 
+      // index.json not found — fallback: redirect to pb1
+      loadLesson('pb1');
+    });
 })();
 </script>
 </body>
