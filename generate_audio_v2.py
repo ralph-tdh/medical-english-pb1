@@ -366,8 +366,17 @@ def maybe_push_github():
 
 # ─── Main ─────────────────────────────────────────────────────────────────────
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Medical English TTS Generator")
+    parser.add_argument("--ci", action="store_true",
+                        help="Non-interactive mode for GitHub Actions (no prompts)")
+    args = parser.parse_args()
+    ci = args.ci
+
     print("=" * 60)
     print("  Medical English — TTS Clip Generator  (multi-voice)")
+    if ci:
+        print("  Mode: CI (non-interactive, skip-existing)")
     print("=" * 60)
 
     # Build clip lists
@@ -388,8 +397,11 @@ def main():
     print_voice_preview(all_clips)
 
     # Overwrite option
-    overwrite_ans = input("\n♻️  Overwrite existing MP3s? [y/N] ").strip().lower()
-    overwrite = overwrite_ans == "y"
+    if ci:
+        overwrite = False      # CI: always skip existing clips
+    else:
+        overwrite_ans = input("\n♻️  Overwrite existing MP3s? [y/N] ").strip().lower()
+        overwrite = overwrite_ans == "y"
 
     # Generate
     print(f"\n🔊 Generating clips (overwrite={overwrite})...\n")
@@ -400,7 +412,9 @@ def main():
     print(f"{'='*60}")
 
     write_manifest(all_clips)
-    maybe_push_github()
+
+    if not ci:
+        maybe_push_github()
 
 
 if __name__ == "__main__":
