@@ -1,496 +1,496 @@
 {
   "pb1_s1_pt": {
-    "voice": "en-AU-WilliamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "Excuse me, where is the X-ray room?",
     "path": "audio/pb1/pb1_s1_pt.mp3"
   },
   "pb1_s1_p0": {
-    "voice": "en-AU-WilliamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "The X-ray room is on the second floor.",
     "path": "audio/pb1/pb1_s1_p0.mp3"
   },
   "pb1_s1_p1": {
-    "voice": "en-AU-WilliamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "Go straight, then turn left.",
     "path": "audio/pb1/pb1_s1_p1.mp3"
   },
   "pb1_s1_p2": {
-    "voice": "en-AU-WilliamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "Follow me, please.",
     "path": "audio/pb1/pb1_s1_p2.mp3"
   },
   "pb1_s1_p3": {
-    "voice": "en-AU-WilliamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "I'm not sure — let me find someone to help.",
     "path": "audio/pb1/pb1_s1_p3.mp3"
   },
   "pb1_s1_v0": {
-    "voice": "en-AU-WilliamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "elevator",
     "path": "audio/pb1/pb1_s1_v0.mp3"
   },
   "pb1_s1_v1": {
-    "voice": "en-AU-WilliamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "corridor",
     "path": "audio/pb1/pb1_s1_v1.mp3"
   },
   "pb1_s1_v2": {
-    "voice": "en-AU-WilliamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "waiting room",
     "path": "audio/pb1/pb1_s1_v2.mp3"
   },
   "pb1_s1_v3": {
-    "voice": "en-AU-WilliamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "reception",
     "path": "audio/pb1/pb1_s1_v3.mp3"
   },
   "pb1_s1_v4": {
-    "voice": "en-AU-WilliamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "ward",
     "path": "audio/pb1/pb1_s1_v4.mp3"
   },
   "pb1_s1_v5": {
-    "voice": "en-AU-WilliamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "restroom",
     "path": "audio/pb1/pb1_s1_v5.mp3"
   },
   "pb1_s1_v6": {
-    "voice": "en-AU-WilliamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "outpatient clinic",
     "path": "audio/pb1/pb1_s1_v6.mp3"
   },
   "pb1_s2_pt": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-IE-EmilyNeural",
     "text": "How long is the wait?",
     "path": "audio/pb1/pb1_s2_pt.mp3"
   },
   "pb1_s2_p0": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-IE-EmilyNeural",
     "text": "The wait is approximately 20 minutes.",
     "path": "audio/pb1/pb1_s2_p0.mp3"
   },
   "pb1_s2_p1": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-IE-EmilyNeural",
     "text": "The doctor is with another patient right now.",
     "path": "audio/pb1/pb1_s2_p1.mp3"
   },
   "pb1_s2_p2": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-IE-EmilyNeural",
     "text": "We're running a little behind schedule today.",
     "path": "audio/pb1/pb1_s2_p2.mp3"
   },
   "pb1_s2_p3": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-IE-EmilyNeural",
     "text": "Please have a seat — we'll call your name.",
     "path": "audio/pb1/pb1_s2_p3.mp3"
   },
   "pb1_s2_p4": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-IE-EmilyNeural",
     "text": "Let me check for you.",
     "path": "audio/pb1/pb1_s2_p4.mp3"
   },
   "pb1_s2_v0": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-IE-EmilyNeural",
     "text": "appointment",
     "path": "audio/pb1/pb1_s2_v0.mp3"
   },
   "pb1_s2_v1": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-IE-EmilyNeural",
     "text": "queue",
     "path": "audio/pb1/pb1_s2_v1.mp3"
   },
   "pb1_s2_v2": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-IE-EmilyNeural",
     "text": "registration desk",
     "path": "audio/pb1/pb1_s2_v2.mp3"
   },
   "pb1_s2_v3": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-IE-EmilyNeural",
     "text": "consultation room",
     "path": "audio/pb1/pb1_s2_v3.mp3"
   },
   "pb1_s2_v4": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-IE-EmilyNeural",
     "text": "schedule",
     "path": "audio/pb1/pb1_s2_v4.mp3"
   },
   "pb1_s2_v5": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-IE-EmilyNeural",
     "text": "check-in",
     "path": "audio/pb1/pb1_s2_v5.mp3"
   },
   "pb1_s3_p0": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "Excuse me, can I help you?",
     "path": "audio/pb1/pb1_s3_p0.mp3"
   },
   "pb1_s3_p1": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "Are you okay?",
     "path": "audio/pb1/pb1_s3_p1.mp3"
   },
   "pb1_s3_p2": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "Are you looking for something?",
     "path": "audio/pb1/pb1_s3_p2.mp3"
   },
   "pb1_s3_p3": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "Please come with me — I'll help you.",
     "path": "audio/pb1/pb1_s3_p3.mp3"
   },
   "pb1_s3_p4": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "Let me get a nurse for you right away.",
     "path": "audio/pb1/pb1_s3_p4.mp3"
   },
   "pb1_s3_v0": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "nurse station",
     "path": "audio/pb1/pb1_s3_v0.mp3"
   },
   "pb1_s3_v1": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "wheelchair",
     "path": "audio/pb1/pb1_s3_v1.mp3"
   },
   "pb1_s3_v2": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "distressed",
     "path": "audio/pb1/pb1_s3_v2.mp3"
   },
   "pb1_s3_v3": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "first aid",
     "path": "audio/pb1/pb1_s3_v3.mp3"
   },
   "pb1_s3_v4": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "emergency room",
     "path": "audio/pb1/pb1_s3_v4.mp3"
   },
   "pb1_s3_v5": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-US-GuyNeural",
     "text": "escort",
     "path": "audio/pb1/pb1_s3_v5.mp3"
   },
   "pb1_s4_pt": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "What is this medication for?",
     "path": "audio/pb1/pb1_s4_pt.mp3"
   },
   "pb1_s4_p0": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "Let me find the pharmacist for you.",
     "path": "audio/pb1/pb1_s4_p0.mp3"
   },
   "pb1_s4_p1": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "I'd suggest asking the doctor directly.",
     "path": "audio/pb1/pb1_s4_p1.mp3"
   },
   "pb1_s4_p2": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "Let me check your records.",
     "path": "audio/pb1/pb1_s4_p2.mp3"
   },
   "pb1_s4_p3": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "Your appointment is on Monday — let me confirm.",
     "path": "audio/pb1/pb1_s4_p3.mp3"
   },
   "pb1_s4_v0": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "prescription",
     "path": "audio/pb1/pb1_s4_v0.mp3"
   },
   "pb1_s4_v1": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "dosage",
     "path": "audio/pb1/pb1_s4_v1.mp3"
   },
   "pb1_s4_v2": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "pharmacist",
     "path": "audio/pb1/pb1_s4_v2.mp3"
   },
   "pb1_s4_v3": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "refill",
     "path": "audio/pb1/pb1_s4_v3.mp3"
   },
   "pb1_s4_v4": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "follow-up",
     "path": "audio/pb1/pb1_s4_v4.mp3"
   },
   "pb1_s4_v5": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "discharge",
     "path": "audio/pb1/pb1_s4_v5.mp3"
   },
   "pb1_q0": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-US-GuyNeural",
     "text": "Patient: \"Where is the elevator?\" — Best response:",
     "path": "audio/pb1/pb1_q0.mp3"
   },
   "pb1_q1": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-US-GuyNeural",
     "text": "\"We're running a little behind schedule today\" means:",
     "path": "audio/pb1/pb1_q1.mp3"
   },
   "pb1_q2": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-US-GuyNeural",
     "text": "You see a patient in the hallway, looking worried. What should you say first?",
     "path": "audio/pb1/pb1_q2.mp3"
   },
   "pb1_q3": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-US-GuyNeural",
     "text": "Patient asks about their appointment but you're not managing their case. What do you say?",
     "path": "audio/pb1/pb1_q3.mp3"
   },
   "pb1_q4": {
-    "voice": "en-GB-LibbyNeural",
+    "voice": "en-US-GuyNeural",
     "text": "Which phrase do you use when you physically walk WITH the patient to show them the way?",
     "path": "audio/pb1/pb1_q4.mp3"
   },
   "pb2_s1_pt": {
-    "voice": "en-GB-RyanNeural",
+    "voice": "en-CA-LiamNeural",
     "text": "\"Gastritis\" — what does this actually mean?",
     "path": "audio/pb2/pb2_s1_pt.mp3"
   },
   "pb2_s1_p0": {
-    "voice": "en-GB-RyanNeural",
+    "voice": "en-CA-LiamNeural",
     "text": "The suffix \"-itis\" means inflammation.",
     "path": "audio/pb2/pb2_s1_p0.mp3"
   },
   "pb2_s1_p1": {
-    "voice": "en-GB-RyanNeural",
+    "voice": "en-CA-LiamNeural",
     "text": "Gastritis means inflammation of the stomach.",
     "path": "audio/pb2/pb2_s1_p1.mp3"
   },
   "pb2_s1_p2": {
-    "voice": "en-GB-RyanNeural",
+    "voice": "en-CA-LiamNeural",
     "text": "You may have heard of hepatitis — that's inflammation of the liver.",
     "path": "audio/pb2/pb2_s1_p2.mp3"
   },
   "pb2_s1_p3": {
-    "voice": "en-GB-RyanNeural",
+    "voice": "en-CA-LiamNeural",
     "text": "Any word ending in \"-itis\" describes a type of inflammation.",
     "path": "audio/pb2/pb2_s1_p3.mp3"
   },
   "pb2_s1_v0": {
-    "voice": "en-GB-RyanNeural",
+    "voice": "en-CA-LiamNeural",
     "text": "gastritis",
     "path": "audio/pb2/pb2_s1_v0.mp3"
   },
   "pb2_s1_v1": {
-    "voice": "en-GB-RyanNeural",
+    "voice": "en-CA-LiamNeural",
     "text": "appendicitis",
     "path": "audio/pb2/pb2_s1_v1.mp3"
   },
   "pb2_s1_v2": {
-    "voice": "en-GB-RyanNeural",
+    "voice": "en-CA-LiamNeural",
     "text": "hepatitis",
     "path": "audio/pb2/pb2_s1_v2.mp3"
   },
   "pb2_s1_v3": {
-    "voice": "en-GB-RyanNeural",
+    "voice": "en-CA-LiamNeural",
     "text": "bronchitis",
     "path": "audio/pb2/pb2_s1_v3.mp3"
   },
   "pb2_s1_v4": {
-    "voice": "en-GB-RyanNeural",
+    "voice": "en-CA-LiamNeural",
     "text": "arthritis",
     "path": "audio/pb2/pb2_s1_v4.mp3"
   },
   "pb2_s1_v5": {
-    "voice": "en-GB-RyanNeural",
+    "voice": "en-CA-LiamNeural",
     "text": "dermatitis",
     "path": "audio/pb2/pb2_s1_v5.mp3"
   },
   "pb2_s1_v6": {
-    "voice": "en-GB-RyanNeural",
+    "voice": "en-CA-LiamNeural",
     "text": "tonsillitis",
     "path": "audio/pb2/pb2_s1_v6.mp3"
   },
   "pb2_s2_pt": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "\"Tachycardia\" — what does that actually mean?",
     "path": "audio/pb2/pb2_s2_pt.mp3"
   },
   "pb2_s2_p0": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "The root \"cardio-\" or \"-cardia\" refers to the heart.",
     "path": "audio/pb2/pb2_s2_p0.mp3"
   },
   "pb2_s2_p1": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "Tachycardia means a fast heart rate — \"tachy-\" means fast.",
     "path": "audio/pb2/pb2_s2_p1.mp3"
   },
   "pb2_s2_p2": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "Bradycardia is the opposite — a slow heart rate.",
     "path": "audio/pb2/pb2_s2_p2.mp3"
   },
   "pb2_s2_p3": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "Cardiac arrest means the heart has stopped completely.",
     "path": "audio/pb2/pb2_s2_p3.mp3"
   },
   "pb2_s2_v0": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "cardiac",
     "path": "audio/pb2/pb2_s2_v0.mp3"
   },
   "pb2_s2_v1": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "tachycardia",
     "path": "audio/pb2/pb2_s2_v1.mp3"
   },
   "pb2_s2_v2": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "bradycardia",
     "path": "audio/pb2/pb2_s2_v2.mp3"
   },
   "pb2_s2_v3": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "cardiomegaly",
     "path": "audio/pb2/pb2_s2_v3.mp3"
   },
   "pb2_s2_v4": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "cardiologist",
     "path": "audio/pb2/pb2_s2_v4.mp3"
   },
   "pb2_s2_v5": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "myocardial",
     "path": "audio/pb2/pb2_s2_v5.mp3"
   },
   "pb2_s2_v6": {
-    "voice": "en-CA-LiamNeural",
+    "voice": "en-AU-NatashaNeural",
     "text": "palpitation",
     "path": "audio/pb2/pb2_s2_v6.mp3"
   },
   "pb2_s3_pt": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "\"Appendectomy\" — can you tell what will happen just from the name?",
     "path": "audio/pb2/pb2_s3_pt.mp3"
   },
   "pb2_s3_p0": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "The suffix \"-ectomy\" means surgical removal.",
     "path": "audio/pb2/pb2_s3_p0.mp3"
   },
   "pb2_s3_p1": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "An appendectomy is the removal of the appendix.",
     "path": "audio/pb2/pb2_s3_p1.mp3"
   },
   "pb2_s3_p2": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "A cholecystectomy removes the gallbladder — \"chole\" = bile, \"cyst\" = sac.",
     "path": "audio/pb2/pb2_s3_p2.mp3"
   },
   "pb2_s3_p3": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "Know the root, and you know exactly what is being removed.",
     "path": "audio/pb2/pb2_s3_p3.mp3"
   },
   "pb2_s3_v0": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "appendectomy",
     "path": "audio/pb2/pb2_s3_v0.mp3"
   },
   "pb2_s3_v1": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "cholecystectomy",
     "path": "audio/pb2/pb2_s3_v1.mp3"
   },
   "pb2_s3_v2": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "mastectomy",
     "path": "audio/pb2/pb2_s3_v2.mp3"
   },
   "pb2_s3_v3": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "tonsillectomy",
     "path": "audio/pb2/pb2_s3_v3.mp3"
   },
   "pb2_s3_v4": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "hysterectomy",
     "path": "audio/pb2/pb2_s3_v4.mp3"
   },
   "pb2_s3_v5": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "nephrectomy",
     "path": "audio/pb2/pb2_s3_v5.mp3"
   },
   "pb2_s3_v6": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "gastrectomy",
     "path": "audio/pb2/pb2_s3_v6.mp3"
   },
   "pb2_s4_pt": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "\"Referred to a gastroenterologist\" — who exactly is that?",
     "path": "audio/pb2/pb2_s4_pt.mp3"
   },
   "pb2_s4_p0": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "\"-ology\" means the study of — and \"-ologist\" is the specialist.",
     "path": "audio/pb2/pb2_s4_p0.mp3"
   },
   "pb2_s4_p1": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "A gastroenterologist specializes in the digestive system.",
     "path": "audio/pb2/pb2_s4_p1.mp3"
   },
   "pb2_s4_p2": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "\"Gastro-\" means stomach, and \"entero-\" means intestine.",
     "path": "audio/pb2/pb2_s4_p2.mp3"
   },
   "pb2_s4_p3": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "Know the root, and you know exactly which organ that specialist treats.",
     "path": "audio/pb2/pb2_s4_p3.mp3"
   },
   "pb2_s4_v0": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "cardiologist",
     "path": "audio/pb2/pb2_s4_v0.mp3"
   },
   "pb2_s4_v1": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "neurologist",
     "path": "audio/pb2/pb2_s4_v1.mp3"
   },
   "pb2_s4_v2": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "gastroenterologist",
     "path": "audio/pb2/pb2_s4_v2.mp3"
   },
   "pb2_s4_v3": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "hepatologist",
     "path": "audio/pb2/pb2_s4_v3.mp3"
   },
   "pb2_s4_v4": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "pulmonologist",
     "path": "audio/pb2/pb2_s4_v4.mp3"
   },
   "pb2_s4_v5": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "dermatologist",
     "path": "audio/pb2/pb2_s4_v5.mp3"
   },
   "pb2_s4_v6": {
-    "voice": "en-GB-SoniaNeural",
+    "voice": "en-AU-WilliamNeural",
     "text": "oncologist",
     "path": "audio/pb2/pb2_s4_v6.mp3"
   },
