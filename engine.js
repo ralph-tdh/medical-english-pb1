@@ -36,10 +36,45 @@ var ANN_COLS = ['#E84D6A','#1CB897','#7B5EA7','#D48A00','#4A8FE8'];
 function themeFor(i) { return TH[i % TH.length]; }
 
 /* ── AUDIO ENGINE ─────────────────────────────────────────── */
-var _audioRate = 0.85;
+var _audioRate  = 0.85;
 var _ttsSupported = typeof window !== 'undefined' && 'speechSynthesis' in window;
+var _currentAudio = null;
 
-function speak(text) {
+/* Derive audio clip path from lesson id + type + indices.
+   Convention matches generate_audio_v2.py output:
+     pt  → {id}_s{si+1}_pt.mp3       (patient utterance)
+     p   → {id}_s{si+1}_p{idx}.mp3   (phrase idx)
+     v   → {id}_s{si+1}_v{idx}.mp3   (vocab chip idx)
+     q   → {id}_q{idx}.mp3           (quiz question idx)  */
+function clipPath(type, a, b) {
+  var base = 'audio/' + META.id + '/' + META.id + '_';
+  if (type === 'pt') return base + 's' + (a + 1) + '_pt.mp3';
+  if (type === 'p')  return base + 's' + (a + 1) + '_p' + b + '.mp3';
+  if (type === 'v')  return base + 's' + (a + 1) + '_v' + b + '.mp3';
+  if (type === 'q')  return base + 'q' + a + '.mp3';
+  return null;
+}
+
+/* speakWith: try pre-generated MP3, fall back to TTS. */
+function speakWith(text, clip) {
+  if (_currentAudio) { _currentAudio.pause(); _currentAudio = null; }
+  window.speechSynthesis && window.speechSynthesis.cancel();
+  if (clip) {
+    var a = new Audio(clip);
+    _currentAudio = a;
+    a.onended = function() { _currentAudio = null; };
+    a.onerror = function() { _currentAudio = null; _speakTTS(text); };
+    a.play().catch(function() { _currentAudio = null; _speakTTS(text); });
+    return;
+  }
+  _speakTTS(text);
+}
+
+/* Legacy wrapper — used by inline onclick="speak(...)" calls that
+   haven't been migrated (e.g. revision quiz).  */
+function speak(text) { _speakTTS(text); }
+
+function _speakTTS(text) {
   if (!_ttsSupported) return;
   window.speechSynthesis.cancel();
   setTimeout(function() {
@@ -259,8 +294,9 @@ function renderSit() {
   if (S.phase === 'learn') {
     var phrases = s.phrases.map(function(p,i){
       var border = i < s.phrases.length-1 ? 'margin-bottom:14px;padding-bottom:14px;border-bottom:1.5px dashed #EEE' : '';
+      var cp = clipPath('p', S.si, i);
       return '<div style="'+border+';display:flex;align-items:flex-start;gap:9px">'
-        +'<button onclick="speak(this.dataset.w)" data-w="'+esc(p.en)+'" '
+        +'<button onclick="speakWith(this.dataset.w,this.dataset.clip)" data-w="'+esc(p.en)+'" data-clip="'+esc(cp)+'" '
           +'style="flex-shrink:0;margin-top:5px;padding:4px 8px;border-radius:8px;border:1.5px solid '+th.c+'55;background:'+th.c+'12;color:'+th.c+';font-size:12px;font-weight:800;cursor:pointer;-webkit-appearance:none;appearance:none;line-height:1;box-shadow:2px 2px 0 '+th.c+'30;transition:transform .1s,box-shadow .1s" '
           +'onmousedown="this.style.transform=\'translate(1px,1px)\';this.style.boxShadow=\'none\'" '
           +'onmouseup="this.style.transform=\'\';this.style.boxShadow=\'2px 2px 0 '+th.c+'30\'" '
@@ -273,8 +309,9 @@ function renderSit() {
       +'</div>';
     }).join('');
 
-    var chips = s.vocab.map(function(v){
-      return '<button onclick="speak(this.dataset.w)" data-w="'+esc(v.en)+'" '
+    var chips = s.vocab.map(function(v,i){
+      var cp = clipPath('v', S.si, i);
+      return '<button onclick="speakWith(this.dataset.w,this.dataset.clip)" data-w="'+esc(v.en)+'" data-clip="'+esc(cp)+'" '
         +'style="display:inline-flex;flex-direction:column;align-items:center;padding:7px 12px;border-radius:14px;border:2px solid '+th.c+'70;background:'+th.c+'14;gap:1px;cursor:pointer;-webkit-appearance:none;appearance:none;box-shadow:2px 2px 0 '+th.c+'35;transition:transform .1s,box-shadow .1s;text-align:center" '
         +'onmousedown="this.style.transform=\'translate(1px,1px)\';this.style.boxShadow=\'none\'" '
         +'onmouseup="this.style.transform=\'\';this.style.boxShadow=\'2px 2px 0 '+th.c+'35\'" '
@@ -554,7 +591,13 @@ function restartLesson() {
 /* ── FLASHCARD ENGINE ─────────────────────────────────────── */
 function buildAllVocab() {
   var all = [];
-  SITS.forEach(function(s){ all = all.concat(s.vocab); });
+  SITS.forEach(function(s, si) {
+    s.vocab.forEach(function(v, vi) {
+      var item = Object.assign({}, v);
+      item._clip = clipPath('v', si, vi);
+      all.push(item);
+    });
+  });
   return all;
 }
 
@@ -610,7 +653,7 @@ function renderFlashcard() {
         +'<div class="hf" style="font-size:30px;font-weight:800;color:#2A2A2A;margin-bottom:10px">'+esc(v.en)+'</div>'
         +'<div style="height:1.5px;background:#7B5EA730;margin-bottom:12px"></div>'
         +'<div style="font-size:22px;font-weight:800;color:#534AB7;margin-bottom:14px">'+esc(v.vi)+'</div>'
-        +'<button onclick="speak(this.dataset.w)" data-w="'+esc(v.en)+'" style="padding:5px 16px;border-radius:20px;border:1.5px solid #7B5EA7;background:#fff;color:#7B5EA7;font-size:13px;font-weight:800;cursor:pointer;-webkit-appearance:none;appearance:none">🔊 '+esc(v.en)+'</button>'
+        +'<button onclick="speakWith(this.dataset.w,this.dataset.clip)" data-w="'+esc(v.en)+'" data-clip="'+esc(v._clip||'')+'" style="padding:5px 16px;border-radius:20px;border:1.5px solid #7B5EA7;background:#fff;color:#7B5EA7;font-size:13px;font-weight:800;cursor:pointer;-webkit-appearance:none;appearance:none">🔊 '+esc(v.en)+'</button>'
       +'</div>'
       +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px" class="pop">'
         +'<button onclick="fcAgain()" class="mbtn" style="background:#FEF0F4;color:#A82040;border-color:#E84D6A;box-shadow:4px 4px 0 #B8304A">✗ Again</button>'
