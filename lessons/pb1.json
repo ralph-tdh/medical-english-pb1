@@ -1,0 +1,673 @@
+{
+  "meta": {
+    "id": "pb1",
+    "version": 6,
+    "title_en": "When a patient stops you in the hallway",
+    "title_vi": "Khi bệnh nhân bắt chuyện ngoài hành lang",
+    "level": 1,
+    "stage": "1B",
+    "cefr": "A2–B1",
+    "topic_tag": "hospital-navigation",
+    "hero_emoji": "🏥",
+    "complete_en": "Lesson 1 complete!",
+    "complete_vi": "Bài 1 hoàn thành!"
+  },
+  "config": {
+    "next": {
+      "url": "https://ralph-tdh.github.io/med-eng-pb/PB2_You_Already_Know_V1.html",
+      "label": "Lesson 2 — You already know Medical English 🧠",
+      "label_vi": "Bài 2 — Bạn đã biết Medical English rồi",
+      "free": true
+    }
+  },
+  "welcome": {
+    "scenario": [
+      {
+        "en": "You're walking through the hospital corridor.",
+        "vi": "Bạn đang đi trong hành lang bệnh viện."
+      },
+      {
+        "en": "A foreign patient stops you and asks…",
+        "vi": "Một bệnh nhân nước ngoài dừng lại và hỏi…"
+      },
+      {
+        "en": "What do you say?",
+        "vi": "Phải nói gì đây?",
+        "bold": true
+      }
+    ],
+    "can_do": [
+      {
+        "en": "Give directions to any hospital area",
+        "vi": "Chỉ đường đến các khu vực trong bệnh viện"
+      },
+      {
+        "en": "Handle a patient's wait-time question professionally",
+        "vi": "Trả lời câu hỏi chờ đợi một cách chuyên nghiệp"
+      },
+      {
+        "en": "Approach a distressed patient in the corridor first",
+        "vi": "Chủ động tiếp cận bệnh nhân cần hỗ trợ"
+      },
+      {
+        "en": "Redirect medication & appointment questions safely",
+        "vi": "Xử lý câu hỏi về thuốc / lịch hẹn đúng cách"
+      }
+    ],
+    "badges": [
+      {
+        "icon": "⏱️",
+        "label": "~15 min"
+      },
+      {
+        "icon": "🎯",
+        "label": "4 situations"
+      },
+      {
+        "icon": "📝",
+        "label": "5-Q quiz"
+      },
+      {
+        "icon": "🆓",
+        "label": "Free"
+      }
+    ]
+  },
+  "done": {
+    "achievements": [
+      {
+        "emoji": "🗺️",
+        "en": "Give directions to any hospital area",
+        "vi": "Chỉ đường đến các khu vực trong BV"
+      },
+      {
+        "emoji": "⏱️",
+        "en": "Manage wait-time questions professionally",
+        "vi": "Xử lý câu hỏi chờ đợi chuyên nghiệp"
+      },
+      {
+        "emoji": "🤝",
+        "en": "Approach a distressed patient first",
+        "vi": "Chủ động tiếp cận bệnh nhân cần giúp"
+      },
+      {
+        "emoji": "💊",
+        "en": "Redirect medication & appointment questions safely",
+        "vi": "Xử lý câu hỏi thuốc/lịch hẹn đúng cách"
+      }
+    ]
+  },
+  "situations": [
+    {
+      "id": 1,
+      "emoji": "🗺️",
+      "tag": "Situation 1 / 4",
+      "en_tag": "Directions",
+      "en": "Asking for directions",
+      "vi": "Hỏi đường",
+      "ctx_en": "A foreign patient is looking for the X-ray room. They spot you and stop to ask.",
+      "ctx_vi": "Bệnh nhân nước ngoài đang tìm phòng X-quang. Họ nhìn thấy bạn và dừng lại hỏi.",
+      "pt": "Excuse me, where is the X-ray room?",
+      "pt_vi": "Xin lỗi, phòng X-quang ở đâu vậy?",
+      "phrases": [
+        {
+          "en": "The X-ray room is on the second floor.",
+          "vi": "Phòng X-quang ở tầng hai.",
+          "gl": {
+            "second floor": "tầng hai"
+          }
+        },
+        {
+          "en": "Go straight, then turn left.",
+          "vi": "Đi thẳng, rồi rẽ trái.",
+          "gl": {
+            "straight": "thẳng",
+            "turn left": "rẽ trái"
+          }
+        },
+        {
+          "en": "Follow me, please.",
+          "vi": "Mời bạn đi theo tôi.",
+          "gl": {}
+        },
+        {
+          "en": "I'm not sure — let me find someone to help.",
+          "vi": "Tôi không chắc — để tôi tìm người hỗ trợ.",
+          "gl": {
+            "not sure": "không chắc"
+          }
+        }
+      ],
+      "vocab": [
+        {
+          "en": "elevator",
+          "ipa": "ˈelɪveɪtər",
+          "vi": "thang máy"
+        },
+        {
+          "en": "corridor",
+          "ipa": "ˈkɒrɪdɔː",
+          "vi": "hành lang"
+        },
+        {
+          "en": "waiting room",
+          "ipa": "ˈweɪtɪŋ ruːm",
+          "vi": "phòng chờ"
+        },
+        {
+          "en": "reception",
+          "ipa": "rɪˈsepʃən",
+          "vi": "lễ tân"
+        },
+        {
+          "en": "ward",
+          "ipa": "wɔːd",
+          "vi": "khoa / phòng bệnh"
+        },
+        {
+          "en": "restroom",
+          "ipa": "ˈrestruːm",
+          "vi": "nhà vệ sinh"
+        },
+        {
+          "en": "outpatient clinic",
+          "ipa": "ˌaʊtˈpeɪʃənt ˈklɪnɪk",
+          "vi": "phòng khám ngoại trú"
+        }
+      ],
+      "pq_en": "Patient: \"Where is the pharmacy?\" — Which is the best response?",
+      "pq_vi": "Bệnh nhân hỏi: \"Where is the pharmacy?\" — Câu trả lời tốt nhất là gì?",
+      "opts": [
+        {
+          "t": "I don't know.",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "The pharmacy is on the ground floor, near the main entrance.",
+          "ok": true,
+          "gl": {
+            "pharmacy": "quầy dược",
+            "ground floor": "tầng trệt",
+            "main entrance": "lối vào chính"
+          }
+        },
+        {
+          "t": "Wait here.",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Ask the reception.",
+          "ok": false,
+          "gl": {
+            "reception": "lễ tân"
+          }
+        }
+      ],
+      "tip_en": "\"I'm not sure — let me find someone\" is always safer than a confident wrong answer.",
+      "tip_vi": "Nếu không biết, đừng đoán — trung thực luôn tốt hơn tự tin mà nói sai."
+    },
+    {
+      "id": 2,
+      "emoji": "⏱️",
+      "tag": "Situation 2 / 4",
+      "en_tag": "Wait time",
+      "en": "How long is the wait?",
+      "vi": "Hỏi thời gian chờ",
+      "ctx_en": "The patient has been waiting a while. They stand up and ask as you walk past.",
+      "ctx_vi": "Bệnh nhân đã ngồi chờ khá lâu. Họ đứng dậy và hỏi khi bạn đi ngang qua.",
+      "pt": "How long is the wait?",
+      "pt_vi": "Chờ còn bao lâu nữa vậy?",
+      "phrases": [
+        {
+          "en": "The wait is approximately 20 minutes.",
+          "vi": "Thời gian chờ khoảng 20 phút.",
+          "gl": {
+            "approximately": "khoảng / ước chừng"
+          }
+        },
+        {
+          "en": "The doctor is with another patient right now.",
+          "vi": "Bác sĩ đang khám cho bệnh nhân khác.",
+          "gl": {}
+        },
+        {
+          "en": "We're running a little behind schedule today.",
+          "vi": "Hôm nay lịch khám bị trễ một chút.",
+          "gl": {
+            "behind schedule": "trễ lịch"
+          }
+        },
+        {
+          "en": "Please have a seat — we'll call your name.",
+          "vi": "Mời bạn ngồi chờ — chúng tôi sẽ gọi tên.",
+          "gl": {
+            "have a seat": "mời ngồi"
+          }
+        },
+        {
+          "en": "Let me check for you.",
+          "vi": "Để tôi kiểm tra cho bạn.",
+          "gl": {}
+        }
+      ],
+      "vocab": [
+        {
+          "en": "appointment",
+          "ipa": "əˈpɔɪntmənt",
+          "vi": "lịch hẹn"
+        },
+        {
+          "en": "queue",
+          "ipa": "kjuː",
+          "vi": "hàng chờ / số thứ tự"
+        },
+        {
+          "en": "registration desk",
+          "ipa": "ˌredʒɪˈstreɪʃən desk",
+          "vi": "quầy đăng ký"
+        },
+        {
+          "en": "consultation room",
+          "ipa": "ˌkɒnsəlˈteɪʃən ruːm",
+          "vi": "phòng khám"
+        },
+        {
+          "en": "schedule",
+          "ipa": "ˈʃedjuːl",
+          "vi": "lịch trình"
+        },
+        {
+          "en": "check-in",
+          "ipa": "ˈtʃek ɪn",
+          "vi": "làm thủ tục vào"
+        }
+      ],
+      "pq_en": "Patient: \"How long do I have to wait?\" — Which is the best response?",
+      "pq_vi": "Bệnh nhân hỏi: \"How long do I have to wait?\" — Câu trả lời tốt nhất là gì?",
+      "opts": [
+        {
+          "t": "I don't know, maybe long.",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "The doctor is very busy.",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "You should have come earlier.",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Please have a seat — the wait is approximately 20 minutes.",
+          "ok": true,
+          "gl": {
+            "approximately": "khoảng / ước chừng",
+            "have a seat": "mời ngồi"
+          }
+        }
+      ],
+      "tip_en": "Always pair information with an action — it shows the patient you're handling it.",
+      "tip_vi": "Luôn kết hợp thông tin với hành động cụ thể — cho bệnh nhân thấy bạn đang xử lý."
+    },
+    {
+      "id": 3,
+      "emoji": "🤝",
+      "tag": "Situation 3 / 4",
+      "en_tag": "Proactive approach",
+      "en": "When you approach first",
+      "vi": "Chủ động giúp bệnh nhân",
+      "ctx_en": "You notice a patient in the corridor — confused or unwell. You're the one who steps forward.",
+      "ctx_vi": "Bạn thấy bệnh nhân đứng ở hành lang — trông bối rối hoặc không ổn. Bạn là người chủ động tiếp cận.",
+      "pt": "(Patient standing still — not asking anything)",
+      "pt_vi": "Bệnh nhân không lên tiếng. Bạn phải là người mở lời trước.",
+      "phrases": [
+        {
+          "en": "Excuse me, can I help you?",
+          "vi": "Xin lỗi, tôi có thể giúp gì cho bạn không?",
+          "gl": {}
+        },
+        {
+          "en": "Are you okay?",
+          "vi": "Bạn có ổn không?",
+          "gl": {}
+        },
+        {
+          "en": "Are you looking for something?",
+          "vi": "Bạn đang tìm gì vậy?",
+          "gl": {}
+        },
+        {
+          "en": "Please come with me — I'll help you.",
+          "vi": "Mời đi theo tôi — tôi sẽ hỗ trợ bạn.",
+          "gl": {
+            "come with me": "đi theo tôi"
+          }
+        },
+        {
+          "en": "Let me get a nurse for you right away.",
+          "vi": "Để tôi gọi điều dưỡng đến ngay.",
+          "gl": {
+            "right away": "ngay lập tức"
+          }
+        }
+      ],
+      "vocab": [
+        {
+          "en": "nurse station",
+          "ipa": "nɜːs ˈsteɪʃən",
+          "vi": "trạm điều dưỡng"
+        },
+        {
+          "en": "wheelchair",
+          "ipa": "ˈwiːltʃeər",
+          "vi": "xe lăn"
+        },
+        {
+          "en": "distressed",
+          "ipa": "dɪˈstrest",
+          "vi": "đang lo lắng / khó chịu"
+        },
+        {
+          "en": "first aid",
+          "ipa": "fɜːst eɪd",
+          "vi": "sơ cứu"
+        },
+        {
+          "en": "emergency room",
+          "ipa": "ɪˈmɜːdʒənsi ruːm",
+          "vi": "phòng cấp cứu"
+        },
+        {
+          "en": "escort",
+          "ipa": "ˈeskɔːt",
+          "vi": "dẫn đi / hỗ trợ đi kèm"
+        }
+      ],
+      "pq_en": "You see a patient standing alone, looking distressed. Best first thing to say?",
+      "pq_vi": "Bạn thấy bệnh nhân đứng một mình, trông lo lắng. Câu đầu tiên nên nói là gì?",
+      "opts": [
+        {
+          "t": "What do you want?",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Are you a patient here?",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Excuse me, are you okay?",
+          "ok": true,
+          "gl": {}
+        },
+        {
+          "t": "Please wait.",
+          "ok": false,
+          "gl": {}
+        }
+      ],
+      "tip_en": "\"Are you okay?\" shows immediate care — it opens the door for the patient to share what's wrong.",
+      "tip_vi": "Thể hiện sự quan tâm trước, hỏi cụ thể sau — đây là thứ tự đúng khi tiếp cận bệnh nhân."
+    },
+    {
+      "id": 4,
+      "emoji": "💊",
+      "tag": "Situation 4 / 4",
+      "en_tag": "Quick medical question",
+      "en": "Quick question about medication or appointment",
+      "vi": "Hỏi về thuốc / lịch hẹn",
+      "ctx_en": "A patient asks quickly about medication or their appointment — but you're not managing their case.",
+      "ctx_vi": "Bệnh nhân hỏi nhanh về thuốc hoặc lịch hẹn — nhưng bạn không phụ trách ca bệnh này.",
+      "pt": "What is this medication for?",
+      "pt_vi": "Thuốc này dùng để làm gì vậy?",
+      "phrases": [
+        {
+          "en": "Let me find the pharmacist for you.",
+          "vi": "Để tôi tìm dược sĩ cho bạn.",
+          "gl": {
+            "pharmacist": "dược sĩ"
+          }
+        },
+        {
+          "en": "I'd suggest asking the doctor directly.",
+          "vi": "Tôi đề nghị bạn hỏi trực tiếp bác sĩ.",
+          "gl": {}
+        },
+        {
+          "en": "Let me check your records.",
+          "vi": "Để tôi kiểm tra hồ sơ bệnh án của bạn.",
+          "gl": {
+            "records": "hồ sơ bệnh án"
+          }
+        },
+        {
+          "en": "Your appointment is on Monday — let me confirm.",
+          "vi": "Lịch hẹn của bạn là thứ Hai — để tôi xác nhận lại.",
+          "gl": {
+            "confirm": "xác nhận",
+            "appointment": "lịch hẹn"
+          }
+        }
+      ],
+      "vocab": [
+        {
+          "en": "prescription",
+          "ipa": "prɪˈskrɪpʃən",
+          "vi": "toa thuốc"
+        },
+        {
+          "en": "dosage",
+          "ipa": "ˈdəʊsɪdʒ",
+          "vi": "liều dùng"
+        },
+        {
+          "en": "pharmacist",
+          "ipa": "ˈfɑːməsɪst",
+          "vi": "dược sĩ"
+        },
+        {
+          "en": "refill",
+          "ipa": "ˌriːˈfɪl",
+          "vi": "lấy thêm thuốc"
+        },
+        {
+          "en": "follow-up",
+          "ipa": "ˈfɒləʊ ʌp",
+          "vi": "tái khám"
+        },
+        {
+          "en": "discharge",
+          "ipa": "ˈdɪstʃɑːdʒ",
+          "vi": "xuất viện"
+        }
+      ],
+      "pq_en": "Patient: \"What is this pill for?\" — You're not sure. Best response?",
+      "pq_vi": "Bệnh nhân hỏi: \"What is this pill for?\" — Bạn không chắc. Phản ứng đúng nhất là gì?",
+      "opts": [
+        {
+          "t": "It's for pain. (đoán đại)",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Let me find the pharmacist for you.",
+          "ok": true,
+          "gl": {
+            "pharmacist": "dược sĩ"
+          }
+        },
+        {
+          "t": "Read the label.",
+          "ok": false,
+          "gl": {
+            "label": "nhãn thuốc"
+          }
+        },
+        {
+          "t": "I don't know anything about medications.",
+          "ok": false,
+          "gl": {}
+        }
+      ],
+      "tip_en": "\"Let me find the pharmacist\" = professional and safe. Never guess about medications.",
+      "tip_vi": "Không bao giờ đoán về thuốc — đây là nguyên tắc an toàn bệnh nhân."
+    }
+  ],
+  "quiz": [
+    {
+      "en": "Patient: \"Where is the elevator?\" — Best response:",
+      "vi": "Bệnh nhân hỏi: \"Where is the elevator?\" — Câu trả lời tốt nhất là gì?",
+      "opts": [
+        {
+          "t": "I don't know.",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Ask someone else.",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Wait here.",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "The elevator is just down the hall, on your right.",
+          "ok": true,
+          "gl": {
+            "down the hall": "cuối hành lang",
+            "on your right": "bên phải bạn"
+          }
+        }
+      ],
+      "exp_en": "\"Just down the hall, on your right\" — specific and polite. Always give directions rather than declining.",
+      "exp_vi": "Câu trả lời cụ thể luôn tốt hơn từ chối. Kết hợp hướng và địa điểm rõ ràng."
+    },
+    {
+      "en": "\"We're running a little behind schedule today\" means:",
+      "vi": "\"We're running a little behind schedule today\" có nghĩa là gì?",
+      "opts": [
+        {
+          "t": "Bác sĩ đang bận rộn.",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Lịch khám bị trễ một chút.",
+          "ok": true,
+          "gl": {}
+        },
+        {
+          "t": "Bệnh viện đang hoạt động chậm.",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Bệnh nhân đến trễ.",
+          "ok": false,
+          "gl": {}
+        }
+      ],
+      "exp_en": "\"Behind schedule\" = delayed vs. planned timetable — polite and neutral, blames no one.",
+      "exp_vi": "Cụm \"running behind schedule\" = trễ so với lịch dự kiến. Lịch sự, không đổ lỗi cho ai."
+    },
+    {
+      "en": "You see a patient in the hallway, looking worried. What should you say first?",
+      "vi": "Bạn thấy bệnh nhân ở hành lang, trông lo lắng. Câu đầu tiên nên nói là gì?",
+      "opts": [
+        {
+          "t": "Excuse me, are you okay?",
+          "ok": true,
+          "gl": {}
+        },
+        {
+          "t": "Do you have an appointment?",
+          "ok": false,
+          "gl": {
+            "appointment": "lịch hẹn"
+          }
+        },
+        {
+          "t": "What happened?",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Please go back to your room.",
+          "ok": false,
+          "gl": {}
+        }
+      ],
+      "exp_en": "\"Are you okay?\" shows immediate care — opens the door for the patient to share what's wrong.",
+      "exp_vi": "Thể hiện sự quan tâm trực tiếp trước — mở cánh cửa để bệnh nhân chia sẻ vấn đề."
+    },
+    {
+      "en": "Patient asks about their appointment but you're not managing their case. What do you say?",
+      "vi": "Bệnh nhân hỏi về lịch hẹn nhưng bạn không phụ trách ca bệnh này. Nên nói gì?",
+      "opts": [
+        {
+          "t": "Your appointment is next week. (đoán)",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "I don't know.",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "Check with the front desk later.",
+          "ok": false,
+          "gl": {
+            "front desk": "quầy lễ tân"
+          }
+        },
+        {
+          "t": "Let me find someone who can check that for you.",
+          "ok": true,
+          "gl": {}
+        }
+      ],
+      "exp_en": "\"Let me find someone\" = active help without guessing. Better than a flat \"I don't know.\"",
+      "exp_vi": "Chủ động tìm người hỗ trợ luôn tốt hơn nói \"Tôi không biết\" và bỏ đi."
+    },
+    {
+      "en": "Which phrase do you use when you physically walk WITH the patient to show them the way?",
+      "vi": "Câu nào dùng khi bạn tự dẫn đường cho bệnh nhân (đi cùng, không chỉ mô tả bằng lời)?",
+      "opts": [
+        {
+          "t": "Follow me, please.",
+          "ok": true,
+          "gl": {}
+        },
+        {
+          "t": "Please have a seat.",
+          "ok": false,
+          "gl": {
+            "have a seat": "mời ngồi"
+          }
+        },
+        {
+          "t": "We'll call your name soon.",
+          "ok": false,
+          "gl": {}
+        },
+        {
+          "t": "The wait is 20 minutes.",
+          "ok": false,
+          "gl": {}
+        }
+      ],
+      "exp_en": "\"Follow me, please\" means you walk together — unlike verbal directions which leave the patient alone.",
+      "exp_vi": "\"Follow me, please\" dùng khi bạn tự dẫn bệnh nhân đi — khác với chỉ mô tả bằng lời."
+    }
+  ]
+}
