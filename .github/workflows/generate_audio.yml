@@ -1,0 +1,42 @@
+name: Generate TTS Audio
+
+on:
+  push:
+    paths:
+      - 'generate_audio_v2.py'   # re-gen everything if script changes
+      - 'pb*.json'               # any new lesson JSON
+    branches:
+      - main
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write            # needed to commit MP3s back
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install edge-tts
+        run: pip install edge-tts --quiet
+
+      - name: Generate audio clips (skip existing)
+        run: python generate_audio_v2.py --ci
+        # --ci flag: non-interactive, overwrite=false, no GitHub push prompt
+
+      - name: Commit new MP3s
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add audio/
+          # Only commit if there are new files
+          git diff --cached --quiet || git commit -m "ci: auto-generate TTS clips [skip ci]"
+          git push
